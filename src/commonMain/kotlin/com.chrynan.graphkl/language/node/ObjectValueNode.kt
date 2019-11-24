@@ -3,13 +3,11 @@ package com.chrynan.graphkl.language.node
 import com.chrynan.graphkl.language.Kind
 import com.chrynan.graphkl.language.Location
 
-class ObjectValueNode(
+data class ObjectValueNode(
         override val location: Location? = null,
         val fields: List<ObjectFieldNode> = emptyList()
-) : Node,
+) : BaseNode(kind = Kind.OBJECT),
         ValueNode<List<ObjectFieldNode>> {
 
-    override val kind: Kind = Kind.OBJECT
-
-    override val value: List<ObjectFieldNode> = emptyList()
+    override val value: List<ObjectFieldNode> = fields
 }
