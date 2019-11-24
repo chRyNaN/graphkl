@@ -5,11 +5,25 @@ import com.chrynan.graphkl.language.token.Token
 import com.chrynan.graphkl.language.token.TokenKind
 import com.chrynan.graphkl.language.token.TokenResult
 
+/**
+ * Given a Source object, creates a Lexer for that source.
+ * A Lexer is a stateful stream generator in that every time
+ * it is advanced, it returns the next token in the Source. Assuming the
+ * source lexes, the final Token emitted by the lexer will be of kind
+ * EOF, after which the lexer will repeatedly return the same EOF token
+ * whenever called.
+ */
 class Lexer(val source: Source) {
 
+    /**
+     * The currently focused non-ignored token.
+     */
     val currentToken: Token
         get() = token
 
+    /**
+     * The previously focused non-ignored token.
+     */
     val previousToken: Token
         get() = lastToken
 
@@ -30,7 +44,13 @@ class Lexer(val source: Source) {
 
     private var lastToken = Token(kind = TokenKind.SOF, start = 0, end = 0, line = 0, column = 0, value = null)
     private var token = Token(kind = TokenKind.SOF, start = 0, end = 0, line = 0, column = 0, value = null)
+    /**
+     * The (1-indexed) line containing the current token.
+     */
     private var line = 1
+    /**
+     * The character offset at which the current line begins.
+     */
     private var lineStart = 0
 
     /**
