@@ -3,6 +3,7 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLObjectType
 import com.chrynan.graphkl.language.type.schema.GraphQLSchema
 
+@GraphQLSchemaDslMarker
 class GraphQLSchemaBuilder internal constructor() {
 
     var query: GraphQLObjectType? = null
