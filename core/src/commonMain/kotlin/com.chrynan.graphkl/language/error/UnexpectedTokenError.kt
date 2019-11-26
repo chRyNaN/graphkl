@@ -7,4 +7,4 @@ class UnexpectedTokenError(
         message: String? = null,
         val token: Token,
         val expectedKind: TokenKind
-) : RuntimeException(message = "Unexpected Token Error: expected token with kind = $expectedKind but was actually = ${token.kind} for token = $token. Message = $message")
+) : RuntimeException("Unexpected Token Error: expected token with kind = $expectedKind but was actually = ${token.kind} for token = $token. Message = $message")

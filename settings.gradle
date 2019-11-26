@@ -1,2 +1,9 @@
 rootProject.name = 'grahpkl'
 
+include 'core'
+include 'schema-dsl'
+include 'query-dsl-builder'
+include 'query-dsl-creator'
+include 'query-dsl-annotation'
+
+enableFeaturePreview('GRADLE_METADATA')
