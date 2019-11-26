@@ -1,3 +1,6 @@
 package com.chrynan.graphkl.language.type
 
-interface GraphQLNamedType
+/**
+ * A [GraphQLType] that has a name. This interface could be useful for scoping.
+ */
+interface GraphQLNamedType : GraphQLType

@@ -2,6 +2,10 @@ package com.chrynan.graphkl.language.type.scalar
 
 import com.chrynan.graphkl.language.type.GraphQLScalarType
 
+/**
+ * This sealed class represents the default scalars that are available in the GraphQL type system. Custom scalars can be
+ * made using the [GraphQLScalarType].
+ */
 sealed class DefaultGraphQLScalarType(
         name: String,
         description: String? = null
