@@ -1,6 +1,6 @@
-package com.chrynan.graphkl.type
+package com.chrynan.graphkl.language.type
 
-data class GraphQLInputField(
+data class GraphQLArgument(
         val name: String,
         val description: String? = null,
         val type: GraphQLInputType,

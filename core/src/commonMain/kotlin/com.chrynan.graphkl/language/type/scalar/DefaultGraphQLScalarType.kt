@@ -1,6 +1,6 @@
-package com.chrynan.graphkl.scalar
+package com.chrynan.graphkl.language.type.scalar
 
-import com.chrynan.graphkl.type.GraphQLScalarType
+import com.chrynan.graphkl.language.type.GraphQLScalarType
 
 sealed class DefaultGraphQLScalarType(
         name: String,

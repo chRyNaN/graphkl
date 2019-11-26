@@ -1,4 +1,4 @@
-package com.chrynan.graphkl.type
+package com.chrynan.graphkl.language.type
 
 data class GraphQLNonNull(
         val ofType: GraphQLNullableType

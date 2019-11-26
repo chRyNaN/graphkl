@@ -1,12 +1,12 @@
-package com.chrynan.graphkl.type
+package com.chrynan.graphkl.language.type
 
-data class GraphQLObjectType(
+class GraphQLUnionType(
         val name: String,
         val description: String? = null,
-        val fields: List<GraphQLField>,
-        val interfaces: List<GraphQLInterfaceType>
+        val types: List<GraphQLObjectType>
 ) : GraphQLType,
         GraphQLOutputType,
         GraphQLCompositeType,
+        GraphQLAbstractType,
         GraphQLNullableType,
         GraphQLNamedType

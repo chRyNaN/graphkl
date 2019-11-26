@@ -1,4 +1,4 @@
-package com.chrynan.graphkl.introspection
+package com.chrynan.graphkl.language.type.introspection
 
 enum class TypeKind(val typeName: String) {
 

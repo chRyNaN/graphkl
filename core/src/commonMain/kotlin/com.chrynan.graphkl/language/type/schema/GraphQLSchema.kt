@@ -1,6 +1,6 @@
-package com.chrynan.graphkl.schema
+package com.chrynan.graphkl.language.type.schema
 
-import com.chrynan.graphkl.type.GraphQLObjectType
+import com.chrynan.graphkl.language.type.GraphQLObjectType
 
 data class GraphQLSchema(
         val queryType: GraphQLObjectType? = null,

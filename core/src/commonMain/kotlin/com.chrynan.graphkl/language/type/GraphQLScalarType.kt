@@ -1,4 +1,4 @@
-package com.chrynan.graphkl.type
+package com.chrynan.graphkl.language.type
 
 open class GraphQLScalarType(
         val name: String,

@@ -1,6 +1,6 @@
-package com.chrynan.graphkl.directive
+package com.chrynan.graphkl.language.type.directive
 
-import com.chrynan.graphkl.type.GraphQLArgument
+import com.chrynan.graphkl.language.type.GraphQLArgument
 
 sealed class DefaultGraphQLDirective(
         name: String,
