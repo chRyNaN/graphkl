@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.language.type
 
-class GraphQLList(
+data class GraphQLList(
         val ofType: GraphQLType
 ) : GraphQLType,
         GraphQLInputType,
