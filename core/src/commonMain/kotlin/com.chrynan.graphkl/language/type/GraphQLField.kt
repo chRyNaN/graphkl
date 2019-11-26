@@ -6,5 +6,5 @@ data class GraphQLField(
         val type: GraphQLOutputType,
         val isDeprecated: Boolean = false,
         val deprecationReason: String? = null,
-        val args: List<GraphQLArgument>
+        val arguments: List<GraphQLArgument>
 )
