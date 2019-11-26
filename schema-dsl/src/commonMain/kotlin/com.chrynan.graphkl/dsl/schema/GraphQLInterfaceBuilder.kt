@@ -2,9 +2,8 @@ package com.chrynan.graphkl.dsl.schema
 
 import com.chrynan.graphkl.language.type.GraphQLField
 import com.chrynan.graphkl.language.type.GraphQLInterfaceType
-import com.chrynan.graphkl.language.type.GraphQLObjectType
 
-class GraphQLObjectBuilder internal constructor() {
+class GraphQLInterfaceBuilder internal constructor() {
 
     lateinit var name: String
     var description: String? = null
@@ -47,7 +46,7 @@ class GraphQLObjectBuilder internal constructor() {
     }
 
     internal fun build() =
-            GraphQLObjectType(
+            GraphQLInterfaceType(
                     name = name,
                     description = description,
                     fields = fields,
