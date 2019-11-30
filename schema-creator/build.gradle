@@ -1,0 +1,31 @@
+group rootProject.groupName
+
+apply plugin: 'kotlin-multiplatform'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+kotlin {
+    targets {
+        jvm()
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+                implementation project(':core')
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+            }
+        }
+    }
+}
+
+configurations {
+    compileClasspath
+}

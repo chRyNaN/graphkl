@@ -2,6 +2,7 @@ rootProject.name = 'grahpkl'
 
 include 'core'
 include 'schema-dsl'
+include 'schema-creator'
 include 'query-dsl-builder'
 include 'query-dsl-creator'
 include 'query-dsl-annotation'
