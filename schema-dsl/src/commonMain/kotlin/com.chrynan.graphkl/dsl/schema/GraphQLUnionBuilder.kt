@@ -3,7 +3,7 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLObjectType
 import com.chrynan.graphkl.language.type.GraphQLUnionType
 
-class GraphQLUnionBuilder internal constructor(private val initialName: String? = null) {
+class GraphQLUnionBuilder internal constructor(initialName: String? = null) {
 
     var name: String? = initialName
     var description: String? = null

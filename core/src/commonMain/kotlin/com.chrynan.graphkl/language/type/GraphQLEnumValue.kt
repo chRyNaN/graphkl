@@ -4,6 +4,6 @@ data class GraphQLEnumValue(
         val name: String,
         val description: String? = null,
         val value: Any,
-        val isDeprecated: Boolean,
+        val isDeprecated: Boolean = false,
         val deprecationReason: String? = null
 )
