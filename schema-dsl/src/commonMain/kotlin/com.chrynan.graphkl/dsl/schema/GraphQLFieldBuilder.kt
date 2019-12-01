@@ -12,7 +12,7 @@ class GraphQLFieldBuilder internal constructor() {
     var isDeprecated: Boolean = false
     var deprecationReason: String? = null
 
-    private val arguments = arrayListOf<GraphQLArgument>()
+    private val arguments = mutableListOf<GraphQLArgument>()
 
     fun arguments(vararg arguments: GraphQLArgument) {
         this.arguments.clear()

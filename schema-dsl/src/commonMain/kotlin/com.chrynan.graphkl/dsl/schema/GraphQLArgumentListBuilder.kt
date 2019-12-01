@@ -4,7 +4,7 @@ import com.chrynan.graphkl.language.type.GraphQLArgument
 
 class GraphQLArgumentListBuilder internal constructor() {
 
-    private val arguments = arrayListOf<GraphQLArgument>()
+    private val arguments = mutableListOf<GraphQLArgument>()
 
     fun argument(builder: GraphQLArgumentBuilder.() -> Unit) {
         val argumentBuilder = GraphQLArgumentBuilder()

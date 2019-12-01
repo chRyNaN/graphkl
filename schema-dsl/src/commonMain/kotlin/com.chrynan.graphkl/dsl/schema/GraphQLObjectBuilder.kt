@@ -9,8 +9,8 @@ class GraphQLObjectBuilder internal constructor() {
     lateinit var name: String
     var description: String? = null
 
-    private val fields = arrayListOf<GraphQLField>()
-    private val interfaces = arrayListOf<GraphQLInterfaceType>()
+    private val fields = mutableListOf<GraphQLField>()
+    private val interfaces = mutableListOf<GraphQLInterfaceType>()
 
     fun fields(vararg fields: GraphQLField) {
         this.fields.clear()
