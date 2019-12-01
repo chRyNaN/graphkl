@@ -33,36 +33,21 @@ val episodeEnum = enum("Episode") {
     +"EMPIRE"
     +"JEDI"
 }
-    
-val characterObject = outputObject {
-    name = "Character"
 
+val characterObject = outputObject("Character") {
     fields {
-        field {
-            name = "name"
-            type = GraphQLString.asNonNull()
-        }
-        field {
-            name = "appearsIn"
-            type = episodeEnum.asNonNull().asList().asNonNull()
-        }
+        field(name = "name", type = GraphQLString.asNonNull())
+        field(name = "appearsIn", type = episodeEnum.asNonNull().asList().asNonNull())
     }
 }
-    
+
 schema {
-    query {
-        name = "Query"
-            
-        fields { 
-            field { 
-                name = "hero"
-                arguments { 
-                    argument { 
-                        name = "episode"
-                        type = episodeEnum
-                    }
+    query("Query") {
+        fields {
+            field(name = "hero", type = characterObject) {
+                arguments {
+                    argument(name = "episode", type = episodeEnum)
                 }
-                type = characterObject
             }
         }
     }

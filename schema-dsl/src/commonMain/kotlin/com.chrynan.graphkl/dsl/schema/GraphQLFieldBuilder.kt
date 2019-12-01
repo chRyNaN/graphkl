@@ -4,7 +4,10 @@ import com.chrynan.graphkl.language.type.GraphQLArgument
 import com.chrynan.graphkl.language.type.GraphQLField
 import com.chrynan.graphkl.language.type.GraphQLOutputType
 
-class GraphQLFieldBuilder internal constructor() {
+class GraphQLFieldBuilder internal constructor(
+        private val initialName: String? = null,
+        private val initialType: GraphQLOutputType? = null
+) {
 
     lateinit var name: String
     lateinit var type: GraphQLOutputType
@@ -32,9 +35,9 @@ class GraphQLFieldBuilder internal constructor() {
     }
 
     internal fun build() = GraphQLField(
-            name = name,
+            name = if (this::name.isInitialized) name else initialName!!,
             description = description,
-            type = type,
+            type = if (this::type.isInitialized) type else initialType!!,
             isDeprecated = isDeprecated,
             deprecationReason = deprecationReason,
             arguments = arguments)

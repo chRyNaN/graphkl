@@ -3,9 +3,9 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLObjectType
 import com.chrynan.graphkl.language.type.GraphQLUnionType
 
-class GraphQLUnionBuilder internal constructor(initialName: String? = null) {
+class GraphQLUnionBuilder internal constructor(private val initialName: String? = null) {
 
-    var name: String? = initialName
+    lateinit var name: String
     var description: String? = null
 
     private val types = mutableSetOf<GraphQLObjectType>()
@@ -24,13 +24,13 @@ class GraphQLUnionBuilder internal constructor(initialName: String? = null) {
 
     internal fun build(): GraphQLUnionType =
             GraphQLUnionType(
-                    name = name!!,
+                    name = if (this::name.isInitialized) name else initialName!!,
                     description = description,
                     types = types.toList())
 }
 
 fun union(name: String? = null, builder: GraphQLUnionBuilder.() -> Unit): GraphQLUnionType {
-    val unionBuilder = GraphQLUnionBuilder(name)
+    val unionBuilder = GraphQLUnionBuilder(initialName = name)
     builder.invoke(unionBuilder)
     return unionBuilder.build()
 }

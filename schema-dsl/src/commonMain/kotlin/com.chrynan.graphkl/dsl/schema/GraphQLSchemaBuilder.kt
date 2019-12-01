@@ -10,20 +10,20 @@ class GraphQLSchemaBuilder internal constructor() {
     var mutation: GraphQLObjectType? = null
     var subscription: GraphQLObjectType? = null
 
-    fun query(builder: GraphQLObjectBuilder.() -> Unit) {
-        val objectBuilder = GraphQLObjectBuilder()
+    fun query(name: String? = null, builder: GraphQLObjectBuilder.() -> Unit) {
+        val objectBuilder = GraphQLObjectBuilder(initialName = name)
         builder.invoke(objectBuilder)
         query = objectBuilder.build()
     }
 
-    fun mutation(builder: GraphQLObjectBuilder.() -> Unit) {
-        val objectBuilder = GraphQLObjectBuilder()
+    fun mutation(name: String? = null, builder: GraphQLObjectBuilder.() -> Unit) {
+        val objectBuilder = GraphQLObjectBuilder(initialName = name)
         builder.invoke(objectBuilder)
         mutation = objectBuilder.build()
     }
 
-    fun subscription(builder: GraphQLObjectBuilder.() -> Unit) {
-        val objectBuilder = GraphQLObjectBuilder()
+    fun subscription(name: String? = null, builder: GraphQLObjectBuilder.() -> Unit) {
+        val objectBuilder = GraphQLObjectBuilder(initialName = name)
         builder.invoke(objectBuilder)
         subscription = objectBuilder.build()
     }

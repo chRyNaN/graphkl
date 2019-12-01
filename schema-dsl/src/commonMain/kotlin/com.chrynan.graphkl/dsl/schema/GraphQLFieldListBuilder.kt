@@ -1,13 +1,19 @@
 package com.chrynan.graphkl.dsl.schema
 
 import com.chrynan.graphkl.language.type.GraphQLField
+import com.chrynan.graphkl.language.type.GraphQLOutputType
 
 class GraphQLFieldListBuilder internal constructor() {
 
     private val fields = mutableListOf<GraphQLField>()
 
-    fun field(builder: GraphQLFieldBuilder.() -> Unit) {
-        val fieldBuilder = GraphQLFieldBuilder()
+    fun field(name: String, type: GraphQLOutputType) {
+        val fieldBuilder = GraphQLFieldBuilder(initialName = name, initialType = type)
+        fields.add(fieldBuilder.build())
+    }
+
+    fun field(name: String? = null, type: GraphQLOutputType? = null, builder: GraphQLFieldBuilder.() -> Unit) {
+        val fieldBuilder = GraphQLFieldBuilder(initialName = name, initialType = type)
         builder.invoke(fieldBuilder)
         fields.add(fieldBuilder.build())
     }

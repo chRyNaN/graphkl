@@ -6,8 +6,8 @@ class GraphQLInterfaceListBuilder internal constructor() {
 
     private val interfaces = arrayListOf<GraphQLInterfaceType>()
 
-    fun int(builder: GraphQLInterfaceBuilder.() -> Unit) {
-        val interfaceBuilder = GraphQLInterfaceBuilder()
+    fun int(name: String? = null, builder: GraphQLInterfaceBuilder.() -> Unit) {
+        val interfaceBuilder = GraphQLInterfaceBuilder(initialName = name)
         builder.invoke(interfaceBuilder)
         this.interfaces.add(interfaceBuilder.build())
     }

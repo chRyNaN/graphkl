@@ -3,7 +3,7 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLField
 import com.chrynan.graphkl.language.type.GraphQLInterfaceType
 
-class GraphQLInterfaceBuilder internal constructor() {
+class GraphQLInterfaceBuilder internal constructor(private val initialName: String? = null) {
 
     lateinit var name: String
     var description: String? = null
@@ -47,7 +47,7 @@ class GraphQLInterfaceBuilder internal constructor() {
 
     internal fun build() =
             GraphQLInterfaceType(
-                    name = name,
+                    name = if(this::name.isInitialized) name else initialName!!,
                     description = description,
                     fields = fields,
                     interfaces = interfaces)

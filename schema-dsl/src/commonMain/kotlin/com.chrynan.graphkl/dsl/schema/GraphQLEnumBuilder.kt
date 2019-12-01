@@ -3,9 +3,9 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLEnumType
 import com.chrynan.graphkl.language.type.GraphQLEnumValue
 
-class GraphQLEnumBuilder internal constructor(initialName: String? = null) {
+class GraphQLEnumBuilder internal constructor(private val initialName: String? = null) {
 
-    var name: String? = initialName
+    lateinit var name: String
     var description: String? = null
 
     private val values = mutableListOf<GraphQLEnumValue>()
@@ -20,7 +20,7 @@ class GraphQLEnumBuilder internal constructor(initialName: String? = null) {
 
     internal fun build(): GraphQLEnumType =
             GraphQLEnumType(
-                    name = name!!,
+                    name = if (this::name.isInitialized) name else initialName!!,
                     description = description,
                     values = values)
 }

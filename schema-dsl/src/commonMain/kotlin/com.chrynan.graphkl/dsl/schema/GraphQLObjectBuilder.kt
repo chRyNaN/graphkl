@@ -4,7 +4,7 @@ import com.chrynan.graphkl.language.type.GraphQLField
 import com.chrynan.graphkl.language.type.GraphQLInterfaceType
 import com.chrynan.graphkl.language.type.GraphQLObjectType
 
-class GraphQLObjectBuilder internal constructor() {
+class GraphQLObjectBuilder internal constructor(private val initialName: String? = null) {
 
     lateinit var name: String
     var description: String? = null
@@ -48,14 +48,14 @@ class GraphQLObjectBuilder internal constructor() {
 
     internal fun build() =
             GraphQLObjectType(
-                    name = name,
+                    name = if (this::name.isInitialized) name else initialName!!,
                     description = description,
                     fields = fields,
                     interfaces = interfaces)
 }
 
-fun outputObject(builder: GraphQLObjectBuilder.() -> Unit): GraphQLObjectType {
-    val objectBuilder = GraphQLObjectBuilder()
+fun outputObject(name: String? = null, builder: GraphQLObjectBuilder.() -> Unit): GraphQLObjectType {
+    val objectBuilder = GraphQLObjectBuilder(initialName = name)
     builder.invoke(objectBuilder)
     return objectBuilder.build()
 }

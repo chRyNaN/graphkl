@@ -3,7 +3,7 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLInputField
 import com.chrynan.graphkl.language.type.GraphQLInputObjectType
 
-class GraphQLInputObjectBuilder internal constructor() {
+class GraphQLInputObjectBuilder internal constructor(private val initialName: String? = null) {
 
     lateinit var name: String
     var description: String? = null
@@ -29,13 +29,13 @@ class GraphQLInputObjectBuilder internal constructor() {
 
     internal fun build(): GraphQLInputObjectType =
             GraphQLInputObjectType(
-                    name = name,
+                    name = if (this::name.isInitialized) name else initialName!!,
                     description = description,
                     fields = fields)
 }
 
-fun inputObject(builder: GraphQLInputObjectBuilder.() -> Unit): GraphQLInputObjectType {
-    val objectBuilder = GraphQLInputObjectBuilder()
+fun inputObject(name: String? = null, builder: GraphQLInputObjectBuilder.() -> Unit): GraphQLInputObjectType {
+    val objectBuilder = GraphQLInputObjectBuilder(initialName = name)
     builder.invoke(objectBuilder)
     return objectBuilder.build()
 }
