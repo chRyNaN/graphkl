@@ -53,3 +53,9 @@ class GraphQLObjectBuilder internal constructor() {
                     fields = fields,
                     interfaces = interfaces)
 }
+
+fun outputObject(builder: GraphQLObjectBuilder.() -> Unit): GraphQLObjectType {
+    val objectBuilder = GraphQLObjectBuilder()
+    builder.invoke(objectBuilder)
+    return objectBuilder.build()
+}
