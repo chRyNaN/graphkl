@@ -13,7 +13,7 @@ fun getNodeClassFromKind(kind: Kind): KClass<*> =
             Kind.OPERATION_DEFINITION -> OperationDefinitionNode::class
             Kind.DOCUMENT -> DocumentNode::class
             Kind.NAME -> NameNode::class
-            Kind.ENUM_TYPE_EXTENSION -> EnumTypeExtensionMode::class
+            Kind.ENUM_TYPE_EXTENSION -> EnumTypeExtensionNode::class
             Kind.INPUT_OBJECT_TYPE_EXTENSION -> InputObjectTypeExtensionNode::class
             Kind.UNION_TYPE_EXTENSION -> UnionTypeExtensionNode::class
             Kind.INTERFACE_TYPE_EXTENSION -> InterfaceTypeExtensionNode::class
