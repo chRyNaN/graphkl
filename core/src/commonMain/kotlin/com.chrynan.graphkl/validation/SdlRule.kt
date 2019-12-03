@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.validation
 
-enum class SdlRules {
+enum class SdlRule : ValidationRule {
 
     LONE_SCHEMA_DEFINITION,
     UNIQUE_OPERATION_TYPES,

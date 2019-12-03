@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.validation
 
-enum class Rules {
+enum class BaseRule : ValidationRule {
 
     EXECUTABLE_DEFINITIONS,
     UNIQUE_OPERATION_NAMES,
