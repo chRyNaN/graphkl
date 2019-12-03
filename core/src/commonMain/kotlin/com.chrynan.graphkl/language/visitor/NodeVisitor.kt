@@ -8,6 +8,8 @@ interface NodeVisitor : ValueNodeVisitor,
         TypeVisitor,
         SchemaVisitor {
 
+    fun visitDocument(node: DocumentNode) {}
+
     fun visitArgument(node: ArgumentNode) {}
 
     fun visitDirectiveDefinition(node: DirectiveDefinitionNode) {}
