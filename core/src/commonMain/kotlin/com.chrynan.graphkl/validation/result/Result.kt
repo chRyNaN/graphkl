@@ -8,3 +8,6 @@ sealed class ValidationResult
 data class Success(val rule: ValidationRule) : ValidationResult()
 
 data class Failure(val errors: List<GraphQLError>) : ValidationResult()
+
+@Suppress("FunctionName")
+fun Failure(error: GraphQLError) = Failure(errors = listOf(error))
