@@ -10,4 +10,6 @@ data class ObjectValueNode(
         ValueNode<List<ObjectFieldNode>> {
 
     override val value: List<ObjectFieldNode> = fields
+
+    override val childNodes: List<Node> = fields
 }

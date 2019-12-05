@@ -12,4 +12,7 @@ data class ListValueNode(
         override val location: Location? = null,
         override val value: List<ValueNode<Any?>> = emptyList()
 ) : BaseNode(kind = Kind.LIST),
-        ValueNode<List<ValueNode<Any?>>>
+        ValueNode<List<ValueNode<Any?>>> {
+
+    override val childNodes: List<Node> = value
+}

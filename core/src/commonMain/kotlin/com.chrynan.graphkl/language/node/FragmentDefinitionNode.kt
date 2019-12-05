@@ -38,4 +38,7 @@ data class FragmentDefinitionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val selectionSet: SelectionSetNode
 ) : BaseNode(kind = Kind.FRAGMENT_DEFINITION),
-        ExecutableDefinitionNode
+        ExecutableDefinitionNode {
+
+    override val childNodes: List<Node> = listOf(name, typeCondition, selectionSet) + variableDefinitions + directives
+}

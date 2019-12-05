@@ -7,4 +7,7 @@ data class ObjectFieldNode(
         override val location: Location? = null,
         val name: NameNode,
         val value: ValueNode<Any?>
-) : BaseNode(kind = Kind.OBJECT_FIELD)
+) : BaseNode(kind = Kind.OBJECT_FIELD) {
+
+    override val childNodes: List<Node> = listOf(name, value)
+}

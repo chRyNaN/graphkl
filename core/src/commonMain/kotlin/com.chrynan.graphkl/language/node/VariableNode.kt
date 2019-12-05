@@ -15,4 +15,7 @@ data class VariableNode(
         val name: NameNode,
         override val value: Any? = null
 ) : BaseNode(kind = Kind.VARIABLE),
-        ValueNode<Any?>
+        ValueNode<Any?> {
+
+    override val childNodes: List<Node> = listOf(name)
+}

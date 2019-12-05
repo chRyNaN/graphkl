@@ -31,4 +31,7 @@ data class InterfaceTypeDefinitionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val fields: List<FieldDefinitionNode> = emptyList()
 ) : BaseNode(kind = Kind.INTERFACE_TYPE_DEFINITION),
-        TypeDefinitionNode
+        TypeDefinitionNode {
+
+    override val childNodes: List<Node> = listOfNotNull(description, name) + interfaces + directives + fields
+}

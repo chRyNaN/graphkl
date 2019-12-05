@@ -12,4 +12,7 @@ data class IntValueNode(
         override val location: Location? = null,
         override val value: Int
 ) : BaseNode(kind = Kind.INT),
-        ValueNode<Int>
+        ValueNode<Int> {
+
+    override val childNodes: List<Node> = emptyList()
+}

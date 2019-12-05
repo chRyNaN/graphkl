@@ -19,4 +19,7 @@ data class ScalarTypeDefinitionNode(
         val name: NameNode,
         val directives: List<DirectiveNode> = emptyList()
 ) : BaseNode(kind = Kind.SCALAR_TYPE_DEFINITION),
-        TypeDefinitionNode
+        TypeDefinitionNode {
+
+    override val childNodes: List<Node> = listOfNotNull(description, name) + directives
+}

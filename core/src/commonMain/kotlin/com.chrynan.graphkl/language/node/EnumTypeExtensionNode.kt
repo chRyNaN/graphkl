@@ -9,4 +9,7 @@ data class EnumTypeExtensionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val values: List<EnumValueDefinitionNode> = emptyList()
 ) : BaseNode(kind = Kind.ENUM_TYPE_EXTENSION),
-        TypeExtensionNode
+        TypeExtensionNode {
+
+    override val childNodes: List<Node> = listOf(name) + directives + values
+}

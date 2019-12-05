@@ -13,4 +13,7 @@ import com.chrynan.graphkl.language.Source
 data class NameNode(
         override val location: Location? = null,
         val value: String
-) : BaseNode(kind = Kind.NAME)
+) : BaseNode(kind = Kind.NAME) {
+
+    override val childNodes: List<Node> = emptyList()
+}

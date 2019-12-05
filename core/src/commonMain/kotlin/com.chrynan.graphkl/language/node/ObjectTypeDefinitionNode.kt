@@ -11,4 +11,7 @@ data class ObjectTypeDefinitionNode(
         val type: TypeNode,
         val directives: List<DirectiveNode> = emptyList()
 ) : BaseNode(kind = Kind.OBJECT_TYPE_DEFINITION),
-        TypeDefinitionNode
+        TypeDefinitionNode {
+
+    override val childNodes: List<Node> = listOfNotNull(description, name, type) + arguments + directives
+}

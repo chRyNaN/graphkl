@@ -25,4 +25,7 @@ data class OperationTypeDefinitionNode(
         override val location: Location? = null,
         val operation: OperationTypeNode,
         val type: NamedTypeNode
-) : BaseNode(kind = Kind.OPERATION_TYPE_DEFINITION)
+) : BaseNode(kind = Kind.OPERATION_TYPE_DEFINITION) {
+
+    override val childNodes: List<Node> = listOf(type)
+}

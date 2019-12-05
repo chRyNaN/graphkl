@@ -45,4 +45,7 @@ data class FieldNode(
         val directives: List<DirectiveNode> = emptyList(),
         val selectionSet: SelectionSetNode? = null
 ) : BaseNode(kind = Kind.FIELD),
-        SelectionNode
+        SelectionNode {
+
+    override val childNodes: List<Node> = listOfNotNull(alias, name, selectionSet) + arguments + directives
+}

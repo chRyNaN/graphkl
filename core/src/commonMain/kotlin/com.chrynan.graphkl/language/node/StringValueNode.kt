@@ -15,4 +15,7 @@ data class StringValueNode(
         override val value: String,
         val block: Boolean = false
 ) : BaseNode(kind = Kind.STRING),
-        ValueNode<String>
+        ValueNode<String> {
+
+    override val childNodes: List<Node> = emptyList()
+}

@@ -38,4 +38,7 @@ data class FieldDefinitionNode(
         val arguments: List<InputValueDefinitionNode> = emptyList(),
         val type: TypeNode,
         val directives: List<DirectiveNode> = emptyList()
-) : BaseNode(kind = Kind.FIELD_DEFINITION)
+) : BaseNode(kind = Kind.FIELD_DEFINITION) {
+
+    override val childNodes: List<Node> = listOfNotNull(description, name, type) + arguments + directives
+}

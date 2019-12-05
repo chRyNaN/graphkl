@@ -13,4 +13,7 @@ data class BooleanValueNode(
         override val location: Location? = null,
         override val value: Boolean
 ) : BaseNode(kind = Kind.BOOLEAN),
-        ValueNode<Boolean>
+        ValueNode<Boolean>{
+
+    override val childNodes: List<Node> = emptyList()
+}

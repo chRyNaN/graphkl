@@ -13,4 +13,7 @@ data class EnumValueNode(
         override val location: Location? = null,
         override val value: String
 ) : BaseNode(kind = Kind.ENUM),
-        ValueNode<String>
+        ValueNode<String> {
+
+    override val childNodes: List<Node> = emptyList()
+}

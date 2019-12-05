@@ -23,4 +23,7 @@ data class VariableDefinitionNode(
         val type: TypeNode,
         val defaultValue: ValueNode<Any?>? = null,
         val directives: List<DirectiveNode> = emptyList()
-) : BaseNode(kind = Kind.VARIABLE_DEFINITION)
+) : BaseNode(kind = Kind.VARIABLE_DEFINITION) {
+
+    override val childNodes: List<Node> = listOfNotNull(variable, type, defaultValue) + directives
+}

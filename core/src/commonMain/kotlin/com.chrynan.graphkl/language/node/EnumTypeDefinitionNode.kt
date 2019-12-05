@@ -27,4 +27,7 @@ data class EnumTypeDefinitionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val values: List<EnumValueDefinitionNode> = emptyList()
 ) : BaseNode(kind = Kind.ENUM_TYPE_DEFINITION),
-        TypeDefinitionNode
+        TypeDefinitionNode {
+
+    override val childNodes: List<Node> = listOfNotNull(description, name) + directives + values
+}

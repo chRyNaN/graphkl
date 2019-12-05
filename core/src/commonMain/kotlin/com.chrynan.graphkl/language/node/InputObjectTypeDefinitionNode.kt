@@ -25,4 +25,7 @@ data class InputObjectTypeDefinitionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val fields: List<InputValueDefinitionNode> = emptyList()
 ) : BaseNode(kind = Kind.INPUT_OBJECT_TYPE_DEFINITION),
-        TypeDefinitionNode
+        TypeDefinitionNode {
+
+    override val childNodes: List<Node> = listOfNotNull(description, name) + directives + fields
+}

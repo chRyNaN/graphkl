@@ -25,4 +25,7 @@ data class ArgumentNode(
         override val location: Location? = null,
         val name: NameNode,
         val value: ValueNode<Any?>
-) : BaseNode(kind = Kind.ARGUMENT)
+) : BaseNode(kind = Kind.ARGUMENT) {
+
+    override val childNodes: List<Node> = listOf(name, value)
+}

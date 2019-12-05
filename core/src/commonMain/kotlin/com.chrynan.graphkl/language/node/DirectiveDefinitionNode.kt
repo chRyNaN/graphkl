@@ -26,4 +26,7 @@ data class DirectiveDefinitionNode(
         val repeatable: Boolean,
         val locations: List<NameNode> = emptyList()
 ) : BaseNode(kind = Kind.DIRECTIVE_DEFINITION),
-        TypeSystemDefinitionNode
+        TypeSystemDefinitionNode {
+
+    override val childNodes: List<Node> = listOfNotNull(description, name) + arguments + locations
+}

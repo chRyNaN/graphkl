@@ -13,4 +13,7 @@ data class FloatValueNode(
         override val location: Location? = null,
         override val value: Float
 ) : BaseNode(kind = Kind.FLOAT),
-        ValueNode<Float>
+        ValueNode<Float> {
+
+    override val childNodes: List<Node> = emptyList()
+}

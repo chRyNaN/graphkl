@@ -22,4 +22,7 @@ data class NonNullTypeNode(
         override val location: Location? = null,
         val type: NamedTypeNode
 ) : BaseNode(kind = Kind.NON_NULL_TYPE),
-        TypeNode
+        TypeNode {
+
+    override val childNodes: List<Node> = listOf(type)
+}

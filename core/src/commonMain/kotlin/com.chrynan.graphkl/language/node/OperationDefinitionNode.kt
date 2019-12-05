@@ -32,4 +32,7 @@ data class OperationDefinitionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val selectionSet: SelectionSetNode
 ) : BaseNode(kind = Kind.OPERATION_DEFINITION),
-        ExecutableDefinitionNode
+        ExecutableDefinitionNode {
+
+    override val childNodes: List<Node> = listOf(name) + variableDefinitions + directives + selectionSet
+}

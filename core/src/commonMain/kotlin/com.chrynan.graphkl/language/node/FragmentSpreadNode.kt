@@ -30,4 +30,7 @@ data class FragmentSpreadNode(
         val directives: List<DirectiveNode> = emptyList()
 ) : BaseNode(kind = Kind.FRAGMENT_SPREAD),
         FragmentNode,
-        SelectionNode
+        SelectionNode {
+
+    override val childNodes: List<Node> = listOf(name) + directives
+}

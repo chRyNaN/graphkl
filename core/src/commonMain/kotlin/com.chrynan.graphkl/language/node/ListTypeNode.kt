@@ -25,4 +25,7 @@ data class ListTypeNode(
         override val location: Location? = null,
         val type: TypeNode
 ) : BaseNode(kind = Kind.LIST_TYPE),
-        TypeNode
+        TypeNode {
+
+    override val childNodes: List<Node> = listOf(type)
+}

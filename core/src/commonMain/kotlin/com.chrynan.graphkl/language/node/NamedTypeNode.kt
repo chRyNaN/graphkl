@@ -24,4 +24,7 @@ data class NamedTypeNode(
         override val location: Location? = null,
         val name: NameNode
 ) : BaseNode(kind = Kind.NAMED_TYPE),
-        TypeNode
+        TypeNode {
+
+    override val childNodes: List<Node> = listOf(name)
+}

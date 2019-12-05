@@ -15,4 +15,6 @@ data class NullValueNode(
     override val kind: Kind = Kind.NULL
 
     override val value: Nothing? = null
+
+    override val childNodes: List<Node> = emptyList()
 }

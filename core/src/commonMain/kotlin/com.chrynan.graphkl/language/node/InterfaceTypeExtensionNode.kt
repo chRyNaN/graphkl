@@ -35,4 +35,7 @@ data class InterfaceTypeExtensionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val fields: List<FieldDefinitionNode> = emptyList()
 ) : BaseNode(kind = Kind.INTERFACE_TYPE_EXTENSION),
-        TypeExtensionNode
+        TypeExtensionNode {
+
+    override val childNodes: List<Node> = listOf(name) + interfaces + directives + fields
+}

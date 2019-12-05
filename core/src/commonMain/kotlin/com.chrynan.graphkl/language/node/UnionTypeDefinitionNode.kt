@@ -26,4 +26,7 @@ data class UnionTypeDefinitionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val types: List<NamedTypeNode> = emptyList()
 ) : BaseNode(kind = Kind.UNION_TYPE_DEFINITION),
-        TypeDefinitionNode
+        TypeDefinitionNode {
+
+    override val childNodes: List<Node> = listOfNotNull(description, name) + directives + types
+}

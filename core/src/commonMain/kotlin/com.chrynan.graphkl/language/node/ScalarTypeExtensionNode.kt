@@ -8,4 +8,7 @@ data class ScalarTypeExtensionNode(
         val name: NameNode,
         val directives: List<DirectiveNode> = emptyList()
 ) : BaseNode(kind = Kind.SCALAR_TYPE_EXTENSION),
-        TypeExtensionNode
+        TypeExtensionNode {
+
+    override val childNodes: List<Node> = listOf(name) + directives
+}

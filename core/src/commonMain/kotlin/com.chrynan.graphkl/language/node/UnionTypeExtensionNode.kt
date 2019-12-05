@@ -9,4 +9,7 @@ data class UnionTypeExtensionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val types: List<NamedTypeNode> = emptyList()
 ) : BaseNode(kind = Kind.UNION_TYPE_EXTENSION),
-        TypeExtensionNode
+        TypeExtensionNode {
+
+    override val childNodes: List<Node> = listOf(name) + directives + types
+}

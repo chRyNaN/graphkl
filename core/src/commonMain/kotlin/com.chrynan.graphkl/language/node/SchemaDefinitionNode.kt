@@ -24,4 +24,7 @@ data class SchemaDefinitionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val operationTypes: List<OperationTypeDefinitionNode> = emptyList()
 ) : BaseNode(kind = Kind.SCHEMA_DEFINITION),
-        TypeSystemDefinitionNode
+        TypeSystemDefinitionNode {
+
+    override val childNodes: List<Node> = directives + operationTypes
+}

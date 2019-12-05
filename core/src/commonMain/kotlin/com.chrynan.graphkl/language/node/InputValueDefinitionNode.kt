@@ -18,4 +18,7 @@ data class InputValueDefinitionNode(
         val type: TypeNode,
         val defaultValue: ValueNode<Any?>? = null,
         val directives: List<DirectiveNode> = emptyList()
-) : BaseNode(kind = Kind.INPUT_VALUE_DEFINITION)
+) : BaseNode(kind = Kind.INPUT_VALUE_DEFINITION) {
+
+    override val childNodes: List<Node> = listOfNotNull(description, name, type, defaultValue) + directives
+}

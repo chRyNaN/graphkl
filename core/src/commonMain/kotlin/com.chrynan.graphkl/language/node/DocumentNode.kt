@@ -13,4 +13,7 @@ data class DocumentNode(
         override val location: Location? = null,
         val definitions: List<DefinitionNode> = emptyList()
 ) : BaseNode(kind = Kind.DOCUMENT),
-        RootNode
+        RootNode {
+
+    override val childNodes: List<Node> = definitions
+}

@@ -8,4 +8,7 @@ data class SchemaExtensionNode(
         val directives: List<DirectiveNode> = emptyList(),
         val operationTypes: List<OperationTypeDefinitionNode> = emptyList()
 ) : BaseNode(kind = Kind.SCHEMA_EXTENSION),
-        TypeSystemExtensionNode
+        TypeSystemExtensionNode {
+
+    override val childNodes: List<Node> = directives + operationTypes
+}

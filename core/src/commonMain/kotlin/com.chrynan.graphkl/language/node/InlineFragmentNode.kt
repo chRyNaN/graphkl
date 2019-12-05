@@ -32,4 +32,7 @@ data class InlineFragmentNode(
         val selectionSet: SelectionSetNode
 ) : BaseNode(kind = Kind.INLINE_FRAGMENT),
         FragmentNode,
-        SelectionNode
+        SelectionNode {
+
+    override val childNodes: List<Node> = listOfNotNull(typeCondition, selectionSet) + directives
+}

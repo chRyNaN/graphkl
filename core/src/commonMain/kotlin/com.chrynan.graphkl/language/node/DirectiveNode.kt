@@ -26,4 +26,7 @@ data class DirectiveNode(
         override val location: Location? = null,
         val name: NameNode,
         val arguments: List<ArgumentNode> = emptyList()
-) : BaseNode(kind = Kind.DIRECTIVE)
+) : BaseNode(kind = Kind.DIRECTIVE) {
+
+    override val childNodes: List<Node> = listOf(name) + arguments
+}
