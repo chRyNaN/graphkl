@@ -16,5 +16,10 @@ import com.chrynan.graphkl.language.Source
  * ExecutableDefinition :
  *   - OperationDefinition
  *   - FragmentDefinition
+ *
+ * "Definitions" are the generic name for top-level statements in the document.
+ * Examples of this include:
+ * 1) Operations (such as a query)
+ * 2) Fragments
  */
 interface DefinitionNode : Node
