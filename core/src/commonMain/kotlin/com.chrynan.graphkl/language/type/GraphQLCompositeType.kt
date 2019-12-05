@@ -1,3 +1,3 @@
 package com.chrynan.graphkl.language.type
 
-interface GraphQLCompositeType
+interface GraphQLCompositeType : GraphQLType
