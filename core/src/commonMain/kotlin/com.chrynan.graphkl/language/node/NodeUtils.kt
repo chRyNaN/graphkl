@@ -49,3 +49,19 @@ fun getNodeClassFromKind(kind: Kind): KClass<*> =
             Kind.INLINE_FRAGMENT -> InlineFragmentNode::class
             Kind.VARIABLE -> VariableNode::class
         }
+
+fun traverse(startWith: Node, operation: (Node) -> Unit) {
+    val nodes = mutableListOf(startWith)
+
+    while (nodes.isNotEmpty()) {
+        val node = nodes.removeAt(0)
+
+        for (child in node.childNodes) {
+            nodes.add(child)
+        }
+
+        operation.invoke(node)
+    }
+}
+
+fun <R : RootNode> R.traverse(operation: (Node) -> Unit) = traverse(startWith = this, operation = operation)
