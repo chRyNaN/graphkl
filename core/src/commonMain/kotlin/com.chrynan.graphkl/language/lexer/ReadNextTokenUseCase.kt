@@ -1,7 +1,7 @@
 package com.chrynan.graphkl.language.lexer
 
 import com.chrynan.graphkl.language.*
-import com.chrynan.graphkl.language.error.SyntaxError
+import com.chrynan.graphkl.error.SyntaxError
 import com.chrynan.graphkl.language.token.Token
 import com.chrynan.graphkl.language.token.TokenKind
 import com.chrynan.graphkl.language.token.TokenResult

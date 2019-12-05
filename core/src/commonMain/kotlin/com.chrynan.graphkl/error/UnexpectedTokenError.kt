@@ -1,4 +1,4 @@
-package com.chrynan.graphkl.language.error
+package com.chrynan.graphkl.error
 
 import com.chrynan.graphkl.language.token.Token
 import com.chrynan.graphkl.language.token.TokenKind

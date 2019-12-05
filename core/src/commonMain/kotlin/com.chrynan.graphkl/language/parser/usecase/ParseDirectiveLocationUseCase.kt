@@ -1,7 +1,7 @@
 package com.chrynan.graphkl.language.parser.usecase
 
 import com.chrynan.graphkl.language.DirectiveLocation
-import com.chrynan.graphkl.language.error.UnexpectedTokenError
+import com.chrynan.graphkl.error.UnexpectedTokenError
 import com.chrynan.graphkl.language.node.NameNode
 import com.chrynan.graphkl.language.parser.usecase.token.GetCurrentTokenUseCase
 import com.chrynan.graphkl.language.token.TokenKind

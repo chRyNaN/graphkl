@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.validation.result
 
-import com.chrynan.graphkl.language.error.GraphQLError
+import com.chrynan.graphkl.error.GraphQLError
 import com.chrynan.graphkl.validation.ValidationRule
 
 sealed class ValidationResult

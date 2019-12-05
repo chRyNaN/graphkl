@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.validation.validator
 
-import com.chrynan.graphkl.language.error.GraphQLError
+import com.chrynan.graphkl.error.GraphQLError
 import com.chrynan.graphkl.language.node.DocumentNode
 import com.chrynan.graphkl.language.node.ExecutableDefinitionNode
 import com.chrynan.graphkl.validation.BaseRule
