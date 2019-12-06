@@ -22,7 +22,7 @@ class InlineFragmentOnCompositeTypeValidator : NodeValidator<InlineFragmentNode>
         val typeCondition = node.typeCondition
 
         if (typeCondition != null) {
-            val type = context.schema.namedTypeMap[typeCondition.name.value]
+            val type = context.schema.typeMap[typeCondition.name.value]
 
             if (type != null && type !is GraphQLCompositeType) {
                 return Failure(error = GraphQLError(message = "Fragment cannot condition on non composite types. Node = $node; type = $type"))

@@ -18,7 +18,7 @@ import com.chrynan.graphkl.validation.result.ValidationResult
 class FragmentDefinitionOnCompositeTypeValidator : NodeValidator<FragmentDefinitionNode> {
 
     override fun invoke(context: ValidationContext, node: FragmentDefinitionNode): ValidationResult {
-        val type = context.schema.namedTypeMap[node.typeCondition.name.value]
+        val type = context.schema.typeMap[node.typeCondition.name.value]
 
         if (type != null && type !is GraphQLCompositeType) {
             return Failure(error = GraphQLError(message = "Fragment cannot condition on non composite types. Node = $node; type = $type"))

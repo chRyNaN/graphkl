@@ -9,4 +9,8 @@ data class GraphQLEnumType(
         GraphQLOutputType,
         GraphQLLeafType,
         GraphQLNullableType,
-        GraphQLNamedType
+        GraphQLNamedType,
+        GraphQLTypeNode {
+
+    override val childTypeNodes: List<GraphQLTypeNode> = emptyList()
+}

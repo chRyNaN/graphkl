@@ -8,4 +8,8 @@ open class GraphQLScalarType(
         GraphQLOutputType,
         GraphQLLeafType,
         GraphQLNullableType,
-        GraphQLNamedType
+        GraphQLNamedType,
+        GraphQLTypeNode {
+
+    override val childTypeNodes: List<GraphQLTypeNode> = emptyList()
+}

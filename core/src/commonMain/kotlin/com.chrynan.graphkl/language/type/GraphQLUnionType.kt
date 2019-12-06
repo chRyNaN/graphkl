@@ -9,4 +9,8 @@ data class GraphQLUnionType(
         GraphQLCompositeType,
         GraphQLAbstractType,
         GraphQLNullableType,
-        GraphQLNamedType
+        GraphQLNamedType,
+        GraphQLTypeNode {
+
+    override val childTypeNodes: List<GraphQLTypeNode> = types
+}

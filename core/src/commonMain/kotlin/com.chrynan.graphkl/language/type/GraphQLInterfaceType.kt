@@ -10,4 +10,11 @@ data class GraphQLInterfaceType(
         GraphQLCompositeType,
         GraphQLAbstractType,
         GraphQLNullableType,
-        GraphQLNamedType
+        GraphQLNamedType,
+        GraphQLTypeNode {
+
+    override val childTypeNodes: List<GraphQLTypeNode> =
+            interfaces +
+                    fields.map { it.type } +
+                    fields.flatMap { field -> field.arguments.map { arg -> arg.type } }
+}

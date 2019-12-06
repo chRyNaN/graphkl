@@ -5,4 +5,8 @@ data class GraphQLNonNull(
 ) : GraphQLType,
         GraphQLInputType,
         GraphQLOutputType,
-        GraphQLWrappingType
+        GraphQLWrappingType,
+        GraphQLTypeNode {
+
+    override val childTypeNodes: List<GraphQLTypeNode> = listOf(ofType)
+}

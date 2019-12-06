@@ -7,4 +7,8 @@ data class GraphQLInputObjectType(
 ) : GraphQLType,
         GraphQLInputType,
         GraphQLNullableType,
-        GraphQLNamedType
+        GraphQLNamedType,
+        GraphQLTypeNode {
+
+    override val childTypeNodes: List<GraphQLTypeNode> = fields.map { it.type }
+}

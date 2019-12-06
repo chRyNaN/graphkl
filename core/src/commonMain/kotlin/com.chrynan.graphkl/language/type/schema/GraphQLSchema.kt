@@ -2,6 +2,8 @@ package com.chrynan.graphkl.language.type.schema
 
 import com.chrynan.graphkl.language.type.GraphQLNamedType
 import com.chrynan.graphkl.language.type.GraphQLObjectType
+import com.chrynan.graphkl.language.type.GraphQLRootTypeNode
+import com.chrynan.graphkl.language.type.GraphQLTypeNode
 import com.chrynan.graphkl.language.type.directive.GraphQLDirective
 import com.chrynan.graphkl.utils.reduceType
 
@@ -87,16 +89,18 @@ data class GraphQLSchema(
         val mutationType: GraphQLObjectType? = null,
         val subscriptionType: GraphQLObjectType? = null,
         val directives: List<GraphQLDirective> = emptyList(),
-        private val types: List<GraphQLNamedType> = emptyList()
-) {
+        private val extraTypes: List<GraphQLNamedType> = emptyList()
+) : GraphQLRootTypeNode {
+
+    override val childTypeNodes: List<GraphQLTypeNode> = listOfNotNull(queryType, mutationType, subscriptionType) + extraTypes
 
     /**
-     * A [List] containing all the [GraphQLNamedType]s declared within this [GraphQLSchema]. Note that this is lazily
+     * A [Set] containing all the [GraphQLNamedType]s declared within this [GraphQLSchema]. Note that this is lazily
      * initialized and the first time accessing this property could take some time. It's best to call this off the main
      * thread or in a suspending function. The reason it is a property is so that it only has to be evaluated once and
      * can be reused.
      */
-    val namedTypes: List<GraphQLNamedType> by lazy { reduceType<GraphQLNamedType>() }
+    val types: Set<GraphQLNamedType> by lazy { reduceType<GraphQLNamedType>() }
 
     /**
      * A [Map] containing all the [GraphQLNamedType]s declared within this [GraphQLSchema]. The [GraphQLNamedType]s are
@@ -104,5 +108,5 @@ data class GraphQLSchema(
      * first time accessing this property could take some time. It's best to call this off the main thread or in a
      * suspending function. The reason it is a property is so that it only has to be evaluated once and can be reused.
      */
-    val namedTypeMap: Map<String, GraphQLNamedType> by lazy { namedTypes.associateBy { it.name } }
+    val typeMap: Map<String, GraphQLNamedType> by lazy { types.associateBy { it.name } }
 }
