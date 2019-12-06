@@ -5,6 +5,6 @@ import com.chrynan.graphkl.language.lexer.Lexer
 class AdvanceToNextTokenUseCase(private val lexer: Lexer) {
 
     operator fun invoke() {
-        lexer.readNextToken()
+        lexer.advance()
     }
 }

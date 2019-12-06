@@ -34,11 +34,14 @@ data class Token(
          * including ignored tokens. <SOF> is always the first node and <EOF>
          * the last.
          */
-        val previous: Token? = null,
-        /**
-         * Tokens exist as nodes in a double-linked-list amongst all tokens
-         * including ignored tokens. <SOF> is always the first node and <EOF>
-         * the last.
-         */
-        val next: Token? = null
-)
+        val previous: Token? = null
+) {
+
+    /**
+     * Tokens exist as nodes in a double-linked-list amongst all tokens
+     * including ignored tokens. <SOF> is always the first node and <EOF>
+     * the last.
+     */
+    var next: Token? = null
+        internal set
+}

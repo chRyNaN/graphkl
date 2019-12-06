@@ -8,7 +8,7 @@ import com.chrynan.graphkl.language.token.TokenKind
 class GetNextExpectedTokenUseCase(private val lexer: Lexer) {
 
     operator fun invoke(expectedKind: TokenKind): Token {
-        val token = lexer.readNextToken()
+        val token = lexer.advance()
 
         if (token.kind != expectedKind) throw UnexpectedTokenError(token = token, expectedKind = expectedKind)
 

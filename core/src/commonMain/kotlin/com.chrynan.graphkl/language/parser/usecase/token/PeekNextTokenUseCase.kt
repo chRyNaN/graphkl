@@ -4,5 +4,5 @@ import com.chrynan.graphkl.language.lexer.Lexer
 
 class PeekNextTokenUseCase(private val lexer: Lexer) {
 
-    operator fun invoke() = lexer.peekNextToken().token
+    operator fun invoke() = lexer.lookahead()?.token
 }

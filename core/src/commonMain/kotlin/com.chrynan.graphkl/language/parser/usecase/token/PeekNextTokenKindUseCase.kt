@@ -4,5 +4,5 @@ import com.chrynan.graphkl.language.token.TokenKind
 
 class PeekNextTokenKindUseCase(private val peekNextTokenUseCase: PeekNextTokenUseCase) {
 
-    operator fun invoke(tokenKind: TokenKind) = peekNextTokenUseCase().kind == tokenKind
+    operator fun invoke(tokenKind: TokenKind) = peekNextTokenUseCase()?.kind == tokenKind
 }

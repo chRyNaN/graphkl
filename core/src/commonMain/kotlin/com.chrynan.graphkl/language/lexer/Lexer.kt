@@ -54,22 +54,48 @@ class Lexer(val source: Source) {
     private var lineStart = 0
 
     /**
+     * Advances the token stream to the next non-ignored token.
+     *
      * Retrieves the next [Token] from the [Source] and advances the [Lexer] position.
      */
-    fun readNextToken(): Token {
-        val result = readNextToken(source = source, start = lastToken.end, line = line, lineStart = lineStart, previous = lastToken)
+    fun advance(): Token {
+        val nextTokenResult = lookahead()
 
-        line = result.lexerLine
-        lineStart = result.lexerLineStart
-        lastToken = token
-        token = result.token
+        // If the nextTokenResult is null, it means we reached the end of the file and can't go further
+        if (nextTokenResult != null) {
+            lastToken = token
+            token = nextTokenResult.token
+            lastToken.next = nextTokenResult.token
+            line = nextTokenResult.lexerLine
+            lineStart = nextTokenResult.lexerLineStart
+        }
 
-        return result.token
+        return token
     }
 
     /**
+     * Looks ahead and returns the next non-ignored token, but does not change
+     * the Lexer's state.
+     *
      * Retrieves the next [TokenResult] from the [Source] but keeps the [Lexer] at the current position.
      */
-    fun peekNextToken(): TokenResult =
-            readNextToken(source = source, start = lastToken.end, line = line, lineStart = lineStart, previous = lastToken)
+    fun lookahead(): TokenResult? {
+        var nextTokenResult: TokenResult? = null
+
+        if (token.kind != TokenKind.EOF) {
+            do {
+                val prevToken = nextTokenResult?.token ?: token
+
+                nextTokenResult = readNextToken(
+                        source = source,
+                        start = prevToken.end,
+                        line = nextTokenResult?.lexerLine ?: line,
+                        lineStart = nextTokenResult?.lexerLineStart ?: lineStart,
+                        previous = prevToken)
+
+            } while (nextTokenResult?.token?.kind == TokenKind.COMMENT)
+        }
+
+        return nextTokenResult
+    }
 }
