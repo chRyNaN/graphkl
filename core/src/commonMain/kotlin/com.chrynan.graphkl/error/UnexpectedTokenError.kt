@@ -3,8 +3,11 @@ package com.chrynan.graphkl.error
 import com.chrynan.graphkl.language.token.Token
 import com.chrynan.graphkl.language.token.TokenKind
 
+/**
+ * A [GraphQLError] indicating that an unexpected token was reached when parsing the tokens from the lexer.
+ */
 class UnexpectedTokenError(
-        message: String? = null,
+        message: String,
         val token: Token,
         val expectedKind: TokenKind
-) : RuntimeException("Unexpected Token Error: expected token with kind = $expectedKind but was actually = ${token.kind} for token = $token. Message = $message")
+) : GraphQLThrowableError(message = "UnexpectedTokenError: message = $message; token = $token; expectedKind = $expectedKind")

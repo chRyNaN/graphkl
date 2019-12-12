@@ -2,4 +2,11 @@ package com.chrynan.graphkl.error
 
 import com.chrynan.graphkl.language.Source
 
-class SyntaxError(message: String? = null, position: Int, source: Source) : RuntimeException("Syntax Error: message = $message; position = $position; source = $source")
+/**
+ * A [GraphQLError] indicating that there was a GraphQL syntax error in a Query or Schema.
+ */
+class SyntaxError(message: String, position: Int, source: Source) : GraphQLThrowableError(
+        message = message,
+        positions = listOf(position),
+        source = source
+)
