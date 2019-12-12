@@ -4,6 +4,10 @@ import com.chrynan.graphkl.language.type.GraphQLField
 import com.chrynan.graphkl.language.type.GraphQLInterfaceType
 import com.chrynan.graphkl.language.type.GraphQLObjectType
 
+/**
+ * A DSL builder class for creating a [GraphQLObjectType]. Instead of directly instantiating a [GraphQLObjectType],
+ * this class can be used, via the [outputObject] function, to create an instance in a Kotlin DSL manner.
+ */
 class GraphQLObjectBuilder internal constructor(private val initialName: String? = null) {
 
     lateinit var name: String
@@ -54,6 +58,15 @@ class GraphQLObjectBuilder internal constructor(private val initialName: String?
                     interfaces = interfaces)
 }
 
+/**
+ * The entry point function to create a [GraphQLObjectType] in a Kotlin DSL manner.
+ *
+ * @author chRyNaN
+ * @param [name] The optional parameter representing the name of the [GraphQLObjectType]. If no value is provided, one
+ * must be provided in the [builder].
+ * @param [builder] The builder used to create a [GraphQLObjectType], scoped to [GraphQLObjectBuilder].
+ * @return [GraphQLObjectType].
+ */
 fun outputObject(name: String? = null, builder: GraphQLObjectBuilder.() -> Unit): GraphQLObjectType {
     val objectBuilder = GraphQLObjectBuilder(initialName = name)
     builder.invoke(objectBuilder)

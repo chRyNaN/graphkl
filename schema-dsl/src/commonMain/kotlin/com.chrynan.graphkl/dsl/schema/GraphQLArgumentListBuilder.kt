@@ -3,6 +3,9 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLArgument
 import com.chrynan.graphkl.language.type.GraphQLInputType
 
+/**
+ * A DSL builder class for creating a list of [GraphQLArgument]s in a Kotlin DSL manner.
+ */
 class GraphQLArgumentListBuilder internal constructor() {
 
     private val arguments = mutableListOf<GraphQLArgument>()

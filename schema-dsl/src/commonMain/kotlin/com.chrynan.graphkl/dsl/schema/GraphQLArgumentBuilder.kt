@@ -3,6 +3,9 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLArgument
 import com.chrynan.graphkl.language.type.GraphQLInputType
 
+/**
+ * A DSL builder class for creating a [GraphQLArgument] in a Kotlin DSL manner.
+ */
 class GraphQLArgumentBuilder internal constructor(
         private val initialName: String? = null,
         private val initialType: GraphQLInputType? = null

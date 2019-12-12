@@ -4,6 +4,9 @@ import com.chrynan.graphkl.language.type.GraphQLArgument
 import com.chrynan.graphkl.language.type.GraphQLField
 import com.chrynan.graphkl.language.type.GraphQLOutputType
 
+/**
+ * A DSL builder class for creating a [GraphQLField] in a Kotlin DSL manner.
+ */
 class GraphQLFieldBuilder internal constructor(
         private val initialName: String? = null,
         private val initialType: GraphQLOutputType? = null

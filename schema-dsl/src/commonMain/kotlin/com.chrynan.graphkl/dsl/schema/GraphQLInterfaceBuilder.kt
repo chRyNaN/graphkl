@@ -3,6 +3,11 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLField
 import com.chrynan.graphkl.language.type.GraphQLInterfaceType
 
+/**
+ * A DSL builder class for creating a [GraphQLInterfaceType]. Instead of directly instantiating a
+ * [GraphQLInterfaceType], this class can be used, via the [graphQLInterface] function, to create an instance in a
+ * Kotlin DSL manner.
+ */
 class GraphQLInterfaceBuilder internal constructor(private val initialName: String? = null) {
 
     lateinit var name: String
@@ -47,8 +52,23 @@ class GraphQLInterfaceBuilder internal constructor(private val initialName: Stri
 
     internal fun build() =
             GraphQLInterfaceType(
-                    name = if(this::name.isInitialized) name else initialName!!,
+                    name = if (this::name.isInitialized) name else initialName!!,
                     description = description,
                     fields = fields,
                     interfaces = interfaces)
+}
+
+/**
+ * The entry point function for creating a [GraphQLInterfaceType] in a Kotlin DSL manner.
+ *
+ * @author chRyNaN
+ * @param [name] The optional parameter representing the name of the [GraphQLInterfaceType]. If a value is not
+ * provided, one must be provided in the [builder].
+ * @param [builder] The builder used to create a [GraphQLInterfaceType], scoped to [GraphQLInterfaceBuilder].
+ * @return [GraphQLInterfaceType]
+ */
+fun graphQLInterface(name: String? = null, builder: GraphQLInterfaceBuilder.() -> Unit): GraphQLInterfaceType {
+    val interfaceBuilder = GraphQLInterfaceBuilder(initialName = name)
+    builder.invoke(interfaceBuilder)
+    return interfaceBuilder.build()
 }

@@ -3,6 +3,9 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLField
 import com.chrynan.graphkl.language.type.GraphQLOutputType
 
+/**
+ * A DSL builder class for creating a list of [GraphQLField]s in a Kotlin DSL manner.
+ */
 class GraphQLFieldListBuilder internal constructor() {
 
     private val fields = mutableListOf<GraphQLField>()

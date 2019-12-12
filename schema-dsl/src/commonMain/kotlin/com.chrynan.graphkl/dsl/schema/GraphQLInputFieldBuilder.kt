@@ -3,6 +3,9 @@ package com.chrynan.graphkl.dsl.schema
 import com.chrynan.graphkl.language.type.GraphQLInputField
 import com.chrynan.graphkl.language.type.GraphQLInputType
 
+/**
+ * A DSL builder class for creating a [GraphQLInputField] in a Kotlin DSL manner.
+ */
 class GraphQLInputFieldBuilder internal constructor(
         private val initialName: String? = null,
         private val initialType: GraphQLInputType? = null
