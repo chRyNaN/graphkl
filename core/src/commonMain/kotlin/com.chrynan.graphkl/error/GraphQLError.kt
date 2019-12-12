@@ -6,6 +6,8 @@ import com.chrynan.graphkl.language.node.Node
 
 /**
  * An error that can occur during the validation or execution of a GraphQL Schema or Query.
+ *
+ * @author chRyNaN
  */
 interface GraphQLError {
 

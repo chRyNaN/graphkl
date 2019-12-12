@@ -10,6 +10,8 @@ import com.chrynan.graphkl.language.node.Node
  * when an error was encountered and should cause the application to throw immediately. [GraphQLError]s are useful for
  * returning errors in a [GraphQLQueryResult]. All [GraphQLError]s are capable of returning an instance of this class
  * by calling the [GraphQLError.asThrowable] function.
+ *
+ * @author chRyNaN
  */
 open class GraphQLThrowableError(
         override val message: String,

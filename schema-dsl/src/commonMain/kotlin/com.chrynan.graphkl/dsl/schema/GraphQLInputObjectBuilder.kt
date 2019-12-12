@@ -15,16 +15,44 @@ class GraphQLInputObjectBuilder internal constructor(private val initialName: St
 
     private val fields = mutableListOf<GraphQLInputField>()
 
+    /**
+     * Adds the provided [GraphQLInputField]s to the [GraphQLInputObjectType] being built in this
+     * [GraphQLInputObjectBuilder] instance.
+     *
+     * Note: This will clear all existing fields.
+     *
+     * @author chRyNaN
+     * @param [fields] The fields to add to this [GraphQLInputObjectType].
+     */
     fun fields(vararg fields: GraphQLInputField) {
         this.fields.clear()
         this.fields.addAll(fields)
     }
 
+    /**
+     * Adds the provided [GraphQLInputField]s to the [GraphQLInputObjectType] being built in this
+     * [GraphQLInputObjectBuilder] instance.
+     *
+     * Note: This will clear all existing fields.
+     *
+     * @author chRyNaN
+     * @param [fields] The fields to add to this [GraphQLInputObjectType].
+     */
     fun fields(fields: Collection<GraphQLInputField>) {
         this.fields.clear()
         this.fields.addAll(fields)
     }
 
+    /**
+     * Adds the provided [GraphQLInputField]s to the [GraphQLInputObjectType] being built in this
+     * [GraphQLInputObjectBuilder] instance.
+     *
+     * Note: This will clear all existing fields.
+     *
+     * @author chRyNaN
+     * @param [builder] The builder used to create the fields to add to this [GraphQLInputObjectType], scoped to
+     * [GraphQLInputFieldListBuilder].
+     */
     fun fields(builder: GraphQLInputFieldListBuilder.() -> Unit) {
         this.fields.clear()
         val fieldListBuilder = GraphQLInputFieldListBuilder()

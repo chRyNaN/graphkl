@@ -5,6 +5,8 @@ import com.chrynan.graphkl.language.token.TokenKind
 
 /**
  * A [GraphQLError] indicating that an unexpected token was reached when parsing the tokens from the lexer.
+ *
+ * @author chRyNaN
  */
 class UnexpectedTokenError(
         message: String,

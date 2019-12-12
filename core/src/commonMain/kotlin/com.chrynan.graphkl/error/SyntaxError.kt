@@ -4,6 +4,8 @@ import com.chrynan.graphkl.language.Source
 
 /**
  * A [GraphQLError] indicating that there was a GraphQL syntax error in a Query or Schema.
+ *
+ * @author chRyNaN
  */
 class SyntaxError(message: String, position: Int, source: Source) : GraphQLThrowableError(
         message = message,

@@ -16,16 +16,44 @@ class GraphQLInterfaceBuilder internal constructor(private val initialName: Stri
     private val fields = arrayListOf<GraphQLField>()
     private val interfaces = arrayListOf<GraphQLInterfaceType>()
 
+    /**
+     * Adds the provided [GraphQLField]s to the [GraphQLInterfaceType] being built in this [GraphQLInterfaceBuilder]
+     * instance.
+     *
+     * Note: This will clear all existing fields.
+     *
+     * @author chRyNaN
+     * @param [fields] The fields to add to this [GraphQLInterfaceType].
+     */
     fun fields(vararg fields: GraphQLField) {
         this.fields.clear()
         this.fields.addAll(fields)
     }
 
+    /**
+     * Adds the provided [GraphQLField]s to the [GraphQLInterfaceType] being built in this [GraphQLInterfaceBuilder]
+     * instance.
+     *
+     * Note: This will clear all existing fields.
+     *
+     * @author chRyNaN
+     * @param [fields] The fields to add to this [GraphQLInterfaceType].
+     */
     fun fields(fields: Collection<GraphQLField>) {
         this.fields.clear()
         this.fields.addAll(fields)
     }
 
+    /**
+     * Adds the provided [GraphQLField]s to the [GraphQLInterfaceType] being built in this [GraphQLInterfaceBuilder]
+     * instance.
+     *
+     * Note: This will clear all existing fields.
+     *
+     * @author chRyNaN
+     * @param [builder] The builder used to create the [GraphQLField]s to add to this [GraphQLInterfaceType], scoped to
+     * [GraphQLFieldListBuilder].
+     */
     fun fields(builder: GraphQLFieldListBuilder.() -> Unit) {
         this.fields.clear()
         val fieldListBuilder = GraphQLFieldListBuilder()

@@ -20,16 +20,38 @@ class GraphQLFieldBuilder internal constructor(
 
     private val arguments = mutableListOf<GraphQLArgument>()
 
+    /**
+     * Adds the provided [GraphQLArgument]s to the [GraphQLField] being built in this [GraphQLFieldBuilder] instance.
+     * Note: This will clear all existing arguments.
+     *
+     * @author chRyNaN
+     * @param [arguments] The arguments to add to this [GraphQLField].
+     */
     fun arguments(vararg arguments: GraphQLArgument) {
         this.arguments.clear()
         this.arguments.addAll(arguments)
     }
 
+    /**
+     * Adds the provided [GraphQLArgument]s to the [GraphQLField] being built in this [GraphQLFieldBuilder] instance.
+     * Note: This will clear all existing arguments.
+     *
+     * @author chRyNaN
+     * @param [arguments] The arguments to add to this [GraphQLField].
+     */
     fun arguments(arguments: Collection<GraphQLArgument>) {
         this.arguments.clear()
         this.arguments.addAll(arguments)
     }
 
+    /**
+     * Adds the provided [GraphQLArgument]s to the [GraphQLField] being built in this [GraphQLFieldBuilder] instance.
+     * Note: This will clear all existing arguments.
+     *
+     * @author chRyNaN
+     * @param [builder] The builder used to create the [GraphQLArgument]s for this [GraphQLField], scoped to
+     * [GraphQLArgumentListBuilder].
+     */
     fun arguments(builder: GraphQLArgumentListBuilder.() -> Unit) {
         this.arguments.clear()
         val argumentListBuilder = GraphQLArgumentListBuilder()
