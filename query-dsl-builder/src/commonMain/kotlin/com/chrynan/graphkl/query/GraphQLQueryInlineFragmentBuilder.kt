@@ -1,17 +1,11 @@
 package com.chrynan.graphkl.query
 
-@GraphQLQueryMarker
-class GraphQLQueryFieldObjectBuilder internal constructor(
-        private val name: String,
-        private val arguments: List<GraphQLQueryArgument> = emptyList(),
+class GraphQLQueryInlineFragmentBuilder internal constructor(
+        private val on: String,
         private val directives: List<GraphQLQueryDirective> = emptyList()
 ) {
 
-    private val fields = mutableListOf<GraphQLQueryFieldNode>()
-
-    fun field(field: GraphQLQueryField) {
-        fields.add(field)
-    }
+    private val fields = mutableListOf<GraphQLQueryField>()
 
     fun field(name: String, directives: List<GraphQLQueryDirective> = emptyList()) {
         fields.add(GraphQLQueryField(name = name, directives = directives))
@@ -55,23 +49,8 @@ class GraphQLQueryFieldObjectBuilder internal constructor(
         fields.add(fieldBuilder.build())
     }
 
-    fun fromFragment(fragment: GraphQLQueryFragment) {
-        fields.add(fragment)
-    }
-
-    fun fromFragment(name: String) {
-        fields.add(GraphQLQueryNamedFragment(name = name))
-    }
-
-    fun inlineFragment(on: String, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryInlineFragmentBuilder.() -> Unit) {
-        val fragmentBuilder = GraphQLQueryInlineFragmentBuilder(on = on, directives = directives)
-        builder.invoke(fragmentBuilder)
-        fields.add(fragmentBuilder.build())
-    }
-
-    internal fun build() = GraphQLQueryField(
-            name = name,
-            arguments = arguments,
+    internal fun build() = GraphQLQueryInlineFragment(
+            on = on,
             nestedFields = fields,
             directives = directives)
 }

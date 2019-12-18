@@ -6,7 +6,11 @@ class GraphQLQueryRootObjectBuilder internal constructor(
         private val queryType: GraphQLQueryType = GraphQLQueryType.QUERY
 ) {
 
-    private val fields = mutableListOf<GraphQLQueryField>()
+    private val fields = mutableListOf<GraphQLQueryFieldNode>()
+
+    fun field(field: GraphQLQueryField) {
+        fields.add(field)
+    }
 
     fun field(name: String, directives: List<GraphQLQueryDirective> = emptyList()) {
         fields.add(GraphQLQueryField(name = name, directives = directives))
@@ -48,6 +52,20 @@ class GraphQLQueryRootObjectBuilder internal constructor(
                 directives = directives)
         builder.invoke(fieldBuilder)
         fields.add(fieldBuilder.build())
+    }
+
+    fun fromFragment(fragment: GraphQLQueryFragment) {
+        fields.add(fragment)
+    }
+
+    fun fromFragment(name: String) {
+        fields.add(GraphQLQueryNamedFragment(name = name))
+    }
+
+    fun inlineFragment(on: String, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryInlineFragmentBuilder.() -> Unit) {
+        val fragmentBuilder = GraphQLQueryInlineFragmentBuilder(on = on, directives = directives)
+        builder.invoke(fragmentBuilder)
+        fields.add(fragmentBuilder.build())
     }
 
     internal fun build() = GraphQLQueryRootObject(

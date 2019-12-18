@@ -7,6 +7,7 @@ class GraphQLQueryBuilder internal constructor() {
     private val mutations = mutableSetOf<GraphQLQueryRootObject>()
     private val subscriptions = mutableSetOf<GraphQLQueryRootObject>()
     private val variables = mutableSetOf<GraphQLQueryVariable>()
+    private val fragments = mutableSetOf<GraphQLQueryFragment>()
 
     fun variable(name: String, value: Any?, defaultValue: Any? = null) {
         variables.add(GraphQLQueryVariable(name = name, value = value, defaultValue = defaultValue))
@@ -39,6 +40,14 @@ class GraphQLQueryBuilder internal constructor() {
         builder.invoke(subscriptionBuilder)
         val subscription = subscriptionBuilder.build()
         subscriptions.add(subscription)
+    }
+
+    fun fragment(name: String, on: String, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFragmentBuilder.() -> Unit): GraphQLQueryFragment {
+        val fragmentBuilder = GraphQLQueryFragmentBuilder(name = name, directives = directives, on = on)
+        builder.invoke(fragmentBuilder)
+        val fragment = fragmentBuilder.build()
+        fragments.add(fragment)
+        return fragment
     }
 
     internal fun build() = GraphQLQuery(
