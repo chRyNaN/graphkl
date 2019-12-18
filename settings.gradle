@@ -5,6 +5,6 @@ include 'schema-dsl'
 include 'schema-creator'
 include 'query-dsl-builder'
 include 'query-dsl-creator'
-include 'query-dsl-annotation'
+include 'annotation'
 
 enableFeaturePreview('GRADLE_METADATA')

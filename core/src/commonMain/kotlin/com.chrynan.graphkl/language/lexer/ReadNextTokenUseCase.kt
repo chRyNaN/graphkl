@@ -1,7 +1,7 @@
 package com.chrynan.graphkl.language.lexer
 
-import com.chrynan.graphkl.language.*
 import com.chrynan.graphkl.error.SyntaxError
+import com.chrynan.graphkl.language.*
 import com.chrynan.graphkl.language.token.Token
 import com.chrynan.graphkl.language.token.TokenKind
 import com.chrynan.graphkl.language.token.TokenResult
@@ -64,10 +64,10 @@ class ReadNextTokenUseCase(
                 if (body.getCharCodeAt(index = startAfterSpace + 1) == Period && body.getCharCodeAt(index = startAfterSpace + 2) == Period) {
                     Token(kind = TokenKind.SPREAD, start = startAfterSpace, end = startAfterSpace + 3, line = lineAfterSpace, column = columnAfterSpace, previous = previous)
                 } else {
-                    throw SyntaxError(source = source, position = startAfterSpace, message = null)
+                    throw SyntaxError(source = source, position = startAfterSpace, message = "")
                 }
             }
-            else -> throw SyntaxError(source = source, position = startAfterSpace, message = null)
+            else -> throw SyntaxError(source = source, position = startAfterSpace, message = "")
         }
 
         return TokenResult(token = token, lexerLine = result?.lexerLine

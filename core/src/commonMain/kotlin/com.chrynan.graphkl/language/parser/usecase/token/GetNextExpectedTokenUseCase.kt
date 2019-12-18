@@ -10,7 +10,7 @@ class GetNextExpectedTokenUseCase(private val lexer: Lexer) {
     operator fun invoke(expectedKind: TokenKind): Token {
         val token = lexer.advance()
 
-        if (token.kind != expectedKind) throw UnexpectedTokenError(token = token, expectedKind = expectedKind)
+        if (token.kind != expectedKind) throw UnexpectedTokenError(token = token, expectedKind = expectedKind, message = "")
 
         return token
     }

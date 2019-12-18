@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.validation.validator
 
-import com.chrynan.graphkl.error.GraphQLError
+import com.chrynan.graphkl.error.GraphQLThrowableError
 import com.chrynan.graphkl.language.node.InlineFragmentNode
 import com.chrynan.graphkl.language.type.GraphQLCompositeType
 import com.chrynan.graphkl.validation.BaseRule
@@ -25,7 +25,7 @@ class InlineFragmentOnCompositeTypeValidator : NodeValidator<InlineFragmentNode>
             val type = context.schema.typeMap[typeCondition.name.value]
 
             if (type != null && type !is GraphQLCompositeType) {
-                return Failure(error = GraphQLError(message = "Fragment cannot condition on non composite types. Node = $node; type = $type"))
+                return Failure(error = GraphQLThrowableError(message = "Fragment cannot condition on non composite types. Node = $node; type = $type"))
             }
         }
 

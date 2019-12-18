@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.validation.validator
 
-import com.chrynan.graphkl.error.GraphQLError
+import com.chrynan.graphkl.error.GraphQLThrowableError
 import com.chrynan.graphkl.language.node.DocumentNode
 import com.chrynan.graphkl.language.node.ExecutableDefinitionNode
 import com.chrynan.graphkl.validation.BaseRule
@@ -19,7 +19,7 @@ class ExecutableDefinitionsValidator : NodeValidator<DocumentNode> {
 
     override fun invoke(context: ValidationContext, node: DocumentNode): ValidationResult {
         val errors = node.definitions.filter { it !is ExecutableDefinitionNode }
-                .map { GraphQLError(message = "The definition $it must be executable for a valid executable GraphQL Document.") }
+                .map { GraphQLThrowableError(message = "The definition $it must be executable for a valid executable GraphQL Document.") }
 
         return if (errors.isEmpty()) Success(rule = BaseRule.EXECUTABLE_DEFINITIONS) else Failure(errors = errors)
     }
