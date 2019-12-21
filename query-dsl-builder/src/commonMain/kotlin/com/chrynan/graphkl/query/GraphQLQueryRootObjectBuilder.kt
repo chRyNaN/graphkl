@@ -7,47 +7,64 @@ class GraphQLQueryRootObjectBuilder internal constructor(
 ) {
 
     private val fields = mutableListOf<GraphQLQueryFieldNode>()
+    private val variableDefinitions = mutableListOf<GraphQLQueryVariableDefinition>()
+
+    fun variableDefinition(name: String, typeName: String, defaultValue: Any? = null) {
+        variableDefinitions.add(GraphQLQueryVariableDefinition(name = name, typeName = typeName, defaultValue = defaultValue))
+    }
+
+    fun variableDefinition(variable: GraphQLQueryVariableDefinition) {
+        variableDefinitions.add(variable)
+    }
+
+    fun variableDefinitions(variables: Collection<GraphQLQueryVariableDefinition>) {
+        this.variableDefinitions.addAll(variables)
+    }
 
     fun field(field: GraphQLQueryField) {
         fields.add(field)
     }
 
-    fun field(name: String, directives: List<GraphQLQueryDirective> = emptyList()) {
-        fields.add(GraphQLQueryField(name = name, directives = directives))
+    fun field(name: String, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList()) {
+        fields.add(GraphQLQueryField(name = name, directives = directives, alias = alias))
     }
 
-    fun field(name: String, vararg args: Pair<String, Any?>, directives: List<GraphQLQueryDirective> = emptyList()) {
+    fun field(name: String, vararg args: Pair<String, Any?>, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList()) {
         fields.add(GraphQLQueryField(
                 name = name,
+                alias = alias,
                 arguments = args.map { GraphQLQueryArgument(name = it.first, value = it.second) },
                 directives = directives))
     }
 
-    fun field(name: String, args: Map<String, Any?>, directives: List<GraphQLQueryDirective> = emptyList()) {
+    fun field(name: String, args: Map<String, Any?>, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList()) {
         fields.add(GraphQLQueryField(
                 name = name,
+                alias = alias,
                 arguments = args.map { GraphQLQueryArgument(name = it.key, value = it.value) },
                 directives = directives))
     }
 
-    fun field(name: String, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
-        val fieldBuilder = GraphQLQueryFieldObjectBuilder(name = name, directives = directives)
+    fun field(name: String, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
+        val fieldBuilder = GraphQLQueryFieldObjectBuilder(name = name, directives = directives, alias = alias)
         builder.invoke(fieldBuilder)
         fields.add(fieldBuilder.build())
     }
 
-    fun field(name: String, vararg args: Pair<String, Any?>, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
+    fun field(name: String, vararg args: Pair<String, Any?>, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
         val fieldBuilder = GraphQLQueryFieldObjectBuilder(
                 name = name,
+                alias = alias,
                 arguments = args.map { GraphQLQueryArgument(name = it.first, value = it.second) },
                 directives = directives)
         builder.invoke(fieldBuilder)
         fields.add(fieldBuilder.build())
     }
 
-    fun field(name: String, args: Map<String, Any?>, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
+    fun field(name: String, args: Map<String, Any?>, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
         val fieldBuilder = GraphQLQueryFieldObjectBuilder(
                 name = name,
+                alias = alias,
                 arguments = args.map { GraphQLQueryArgument(name = it.key, value = it.value) },
                 directives = directives)
         builder.invoke(fieldBuilder)
@@ -70,6 +87,7 @@ class GraphQLQueryRootObjectBuilder internal constructor(
 
     internal fun build() = GraphQLQueryRootObject(
             operationName = operationName,
-            queryType = queryType,
+            operationType = queryType,
+            variableDefinitions = variableDefinitions,
             nestedFields = fields)
 }
