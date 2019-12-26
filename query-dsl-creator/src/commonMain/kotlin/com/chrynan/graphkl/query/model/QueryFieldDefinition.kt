@@ -1,18 +1,10 @@
 package com.chrynan.graphkl.query.model
 
-import com.chrynan.graphkl.kotlin.ImportStatement
-
 data class QueryFieldDefinition(
         val name: String,
         val parameters: List<InputTypeParameterDefinition> = emptyList(),
         val nestedBuilder: QueryBuilderClass? = null
 ) {
-
-    val isKotlinFunction: Boolean
-        get() = parameters.isNotEmpty()
-
-    val isKotlinProperty: Boolean
-        get() = !isKotlinFunction
 
     val declaration: String = buildString {
         if (parameters.isEmpty() && nestedBuilder == null) {
@@ -55,6 +47,4 @@ data class QueryFieldDefinition(
             append(")")
         }
     }
-
-    val importStatements: List<ImportStatement> = parameters.flatMap { it.type.importStatements }
 }
