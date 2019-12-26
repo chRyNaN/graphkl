@@ -6,7 +6,7 @@ package com.chrynan.graphkl.kotlin
  *
  * @author chRyNaN
  */
-sealed class GenericTypeParameterDefinition {
+sealed class KotlinGenericTypeParameterDefinition {
 
     /**
      * Example:
@@ -43,12 +43,12 @@ sealed class GenericTypeParameterDefinition {
      *
      * @author chRyNaN
      */
-    abstract val importStatements: List<ImportStatement>
+    abstract val importStatements: List<KotlinImportStatement>
 
     data class Variable(
             val name: String,
-            val extends: GenericTypeParameterDefinition? = null
-    ) : GenericTypeParameterDefinition() {
+            val extends: KotlinGenericTypeParameterDefinition? = null
+    ) : KotlinGenericTypeParameterDefinition() {
 
         override val genericFunctionTypeDeclaration: String = buildString {
             append(name)
@@ -60,15 +60,15 @@ sealed class GenericTypeParameterDefinition {
 
         override val typeDeclaration = name
 
-        override val importStatements: List<ImportStatement> = extends?.importStatements ?: emptyList()
+        override val importStatements: List<KotlinImportStatement> = extends?.importStatements ?: emptyList()
     }
 
-    data class Type(val typeDefinition: TypeDefinition) : GenericTypeParameterDefinition() {
+    data class Type(val typeDefinition: KotlinTypeDefinition) : KotlinGenericTypeParameterDefinition() {
 
         override val genericFunctionTypeDeclaration: String? = null
 
         override val typeDeclaration = typeDefinition.typeDeclaration
 
-        override val importStatements: List<ImportStatement> = typeDefinition.importStatements
+        override val importStatements: List<KotlinImportStatement> = typeDefinition.importStatements
     }
 }

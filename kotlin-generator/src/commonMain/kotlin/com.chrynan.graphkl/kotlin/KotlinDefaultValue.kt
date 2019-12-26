@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.kotlin
 
-data class DefaultValue(
+data class KotlinDefaultValue(
         val hasDefaultValue: Boolean,
         val value: Any? = null
 )

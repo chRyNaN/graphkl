@@ -1,20 +1,21 @@
 package com.chrynan.graphkl.kotlin
 
 import com.chrynan.graphkl.kotlin.modifier.PropertyModifier
+import com.chrynan.graphkl.kotlin.modifier.PropertyType
 import com.chrynan.graphkl.kotlin.modifier.VisibilityModifier
 
-data class Property(
+data class KotlinProperty(
         val name: String,
-        val type: PropertyType,
-        val typeDefinition: TypeDefinition,
-        val visibility: VisibilityModifier,
-        val modifiers: Set<PropertyModifier>,
+        val type: PropertyType = PropertyType.VAL,
+        val typeDefinition: KotlinTypeDefinition,
+        val visibility: VisibilityModifier = VisibilityModifier.PUBLIC,
+        val modifiers: Set<PropertyModifier> = emptySet(),
         val initializer: String? = null,
         val getter: String? = null,
         val setter: String? = null
 ) {
 
-    val importStatements: List<ImportStatement> = typeDefinition.importStatements
+    val importStatements: List<KotlinImportStatement> = typeDefinition.importStatements
 
     override fun toString() = buildString {
         append(visibility.keyword.value)

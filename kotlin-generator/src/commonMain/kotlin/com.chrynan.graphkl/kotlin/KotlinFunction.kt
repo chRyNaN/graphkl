@@ -3,17 +3,17 @@ package com.chrynan.graphkl.kotlin
 import com.chrynan.graphkl.kotlin.modifier.FunctionModifier
 import com.chrynan.graphkl.kotlin.modifier.VisibilityModifier
 
-class Function(
+class KotlinFunction(
         val name: String,
-        val returnType: TypeDefinition = UNIT_TYPE_DEFINITION,
+        val returnType: KotlinTypeDefinition = UNIT_TYPE_DEFINITION,
         val visibility: VisibilityModifier = VisibilityModifier.PUBLIC,
         val modifiers: Set<FunctionModifier> = emptySet(),
-        val parameters: List<Parameter> = emptyList(),
-        val extraImports: List<ImportStatement> = emptyList(),
-        val body: (Function) -> String
+        val parameters: List<KotlinParameter> = emptyList(),
+        val extraImports: List<KotlinImportStatement> = emptyList(),
+        val body: (KotlinFunction) -> String
 ) {
 
-    val importStatements: List<ImportStatement> = returnType.importStatements + parameters.flatMap { it.importStatements } + extraImports
+    val importStatements: List<KotlinImportStatement> = returnType.importStatements + parameters.flatMap { it.importStatements } + extraImports
 
     override fun toString() = buildString {
         append("${visibility.keyword.value} ")
@@ -50,7 +50,7 @@ class Function(
 
         append("): $returnType {\n")
 
-        append(body(this@Function))
+        append(body(this@KotlinFunction))
 
         append("\n}")
     }

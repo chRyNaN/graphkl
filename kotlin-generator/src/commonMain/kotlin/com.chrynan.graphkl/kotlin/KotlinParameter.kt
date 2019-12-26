@@ -1,12 +1,12 @@
 package com.chrynan.graphkl.kotlin
 
-data class Parameter(
+data class KotlinParameter(
         val name: String,
-        val type: TypeDefinition,
-        val defaultValue: DefaultValue
+        val type: KotlinTypeDefinition,
+        val defaultValue: KotlinDefaultValue
 ) {
 
-    val importStatements: List<ImportStatement> = type.importStatements
+    val importStatements: List<KotlinImportStatement> = type.importStatements
 
     val genericTypeFunctionDeclaration: String = buildString {
         type.genericTypeVariables.forEachIndexed { index, variable ->

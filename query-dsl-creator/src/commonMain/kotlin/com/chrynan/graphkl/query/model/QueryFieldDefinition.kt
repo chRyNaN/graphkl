@@ -1,50 +1,39 @@
 package com.chrynan.graphkl.query.model
 
-data class QueryFieldDefinition(
-        val name: String,
-        val parameters: List<InputTypeParameterDefinition> = emptyList(),
-        val nestedBuilder: QueryBuilderClass? = null
-) {
+import com.chrynan.graphkl.kotlin.KotlinParameter
 
-    val declaration: String = buildString {
-        if (parameters.isEmpty() && nestedBuilder == null) {
-            append("val $name: Unit")
-        } else if (parameters.isEmpty()) {
-            append("fun $name(builder: ${nestedBuilder?.className}.() -> Unit)")
-        } else {
-            append("fun ")
+sealed class QueryFieldDefinition {
 
-            val genericTypeDeclarations = parameters.map { it.genericTypeFunctionDeclaration }
+    abstract val name: String
+    abstract val aliasParameterName: String
+    abstract val parentBuilderPropertyName: String
 
-            if (genericTypeDeclarations.isNotEmpty()) {
-                append("<")
+    data class Scalar(
+            override val name: String,
+            override val aliasParameterName: String,
+            override val parentBuilderPropertyName: String
+    ) : QueryFieldDefinition() {
 
-                genericTypeDeclarations.forEachIndexed { index, s ->
-                    append(s)
-
-                    if (index != genericTypeDeclarations.lastIndex) {
-                        append(", ")
-                    }
-                }
-
-                append("> ")
-            }
-
-            append("$name(")
-
-            parameters.forEachIndexed { index, definition ->
-                append(definition.declaration)
-
-                if (index != parameters.lastIndex) {
-                    append(", ")
-                }
-            }
-
-            if (nestedBuilder != null) {
-                append(", builder:  ${nestedBuilder.className}.() -> Unit")
-            }
-
-            append(")")
-        }
+        fun toScalarWithEmptyParameters() = ScalarWithParameters(
+                name = name,
+                aliasParameterName = aliasParameterName,
+                parameters = emptyList(),
+                parentBuilderPropertyName = parentBuilderPropertyName)
     }
+
+    data class ScalarWithParameters(
+            override val name: String,
+            override val aliasParameterName: String,
+            override val parentBuilderPropertyName: String,
+            val parameters: List<KotlinParameter> = emptyList()
+    ) : QueryFieldDefinition()
+
+    data class Object(
+            override val name: String,
+            override val aliasParameterName: String,
+            override val parentBuilderPropertyName: String,
+            val parameters: List<KotlinParameter> = emptyList(),
+            val nestedBuilderParameterName: String,
+            val nestedBuilderClassName: String
+    ) : QueryFieldDefinition()
 }

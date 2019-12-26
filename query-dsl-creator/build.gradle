@@ -17,6 +17,7 @@ kotlin {
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
                 implementation project(':core')
                 implementation project(':kotlin-generator')
+                implementation project(':query-dsl-builder')
             }
         }
         jvmMain {

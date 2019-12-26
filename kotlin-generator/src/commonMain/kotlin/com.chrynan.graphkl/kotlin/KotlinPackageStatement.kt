@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.kotlin
 
-data class PackageStatement(val packageName: String) {
+data class KotlinPackageStatement(val packageName: String) {
 
     override fun toString() = "package $packageName"
 }

@@ -24,16 +24,16 @@ package com.chrynan.graphkl.kotlin
  *
  * @author chRyNaN
  */
-data class TypeDefinition(
+data class KotlinTypeDefinition(
         val packageName: String,
         val className: String,
         val classImportAliasName: String? = null,
-        val isNullable: Boolean,
-        val genericTypes: List<GenericTypeParameterDefinition> = emptyList()
+        val isNullable: Boolean = false,
+        val genericTypes: List<KotlinGenericTypeParameterDefinition> = emptyList()
 ) {
 
     /**
-     * The import statement [String] of the Kotlin type this [TypeDefinition] represents.
+     * The import statement [String] of the Kotlin type this [KotlinTypeDefinition] represents.
      *
      * Example:
      *
@@ -41,10 +41,10 @@ data class TypeDefinition(
      *
      * @author chRyNaN
      */
-    val importStatement = ImportStatement(fullName = "$packageName.$className", alias = classImportAliasName)
+    val importStatement = KotlinImportStatement(fullName = "$packageName.$className", alias = classImportAliasName)
 
     /**
-     * A [String] containing import statements for this [TypeDefinition] and all [TypeDefinition]s of the
+     * A [String] containing import statements for this [KotlinTypeDefinition] and all [KotlinTypeDefinition]s of the
      * [genericTypes]. Note that this will be a multi-line [String] if there are [genericTypes]. Otherwise this will be
      * the same as [importStatement].
      *
@@ -55,10 +55,10 @@ data class TypeDefinition(
      *
      * @author chRyNaN
      */
-    val importStatements: List<ImportStatement> = genericTypes.flatMap { it.importStatements } + importStatement
+    val importStatements: List<KotlinImportStatement> = genericTypes.flatMap { it.importStatements } + importStatement
 
     /**
-     * The Kotlin type declaration that this [TypeDefinition] represents.
+     * The Kotlin type declaration that this [KotlinTypeDefinition] represents.
      *
      * Example:
      *
@@ -93,11 +93,13 @@ data class TypeDefinition(
     }
 
     /**
-     * [genericTypes] that are [GenericTypeParameterDefinition.Variable]s. This allows a caller to easily grabbed the
+     * [genericTypes] that are [KotlinGenericTypeParameterDefinition.Variable]s. This allows a caller to easily grabbed the
      * filtered list to perform any operations, such as, creating generic type declarations for functions.
      *
      * @author chRyNaN
      */
-    val genericTypeVariables: List<GenericTypeParameterDefinition.Variable> =
-            genericTypes.filterIsInstance<GenericTypeParameterDefinition.Variable>()
+    val genericTypeVariables: List<KotlinGenericTypeParameterDefinition.Variable> =
+            genericTypes.filterIsInstance<KotlinGenericTypeParameterDefinition.Variable>()
+
+    override fun toString() = typeDeclaration
 }

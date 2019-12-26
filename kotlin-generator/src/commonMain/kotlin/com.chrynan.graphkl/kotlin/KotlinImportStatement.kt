@@ -1,6 +1,6 @@
 package com.chrynan.graphkl.kotlin
 
-data class ImportStatement(
+data class KotlinImportStatement(
         val fullName: String,
         val alias: String? = null
 ) {
