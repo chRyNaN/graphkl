@@ -1,25 +1,18 @@
-package com.chrynan.graphkl.query
+@file:Suppress("unused")
+
+package com.chrynan.graphkl.query.builder
+
+import com.chrynan.graphkl.query.*
 
 @GraphQLQueryMarker
-class GraphQLQueryRootObjectBuilder internal constructor(
-        private val operationName: String? = null,
-        private val queryType: GraphQLQueryType = GraphQLQueryType.QUERY
+class GraphQLQueryFieldObjectBuilder internal constructor(
+        private val name: String,
+        private val alias: String? = null,
+        private val arguments: List<GraphQLQueryArgument> = emptyList(),
+        private val directives: List<GraphQLQueryDirective> = emptyList()
 ) {
 
     private val fields = mutableListOf<GraphQLQueryFieldNode>()
-    private val variableDefinitions = mutableListOf<GraphQLQueryVariableDefinition>()
-
-    fun variableDefinition(name: String, typeName: String, defaultValue: Any? = null) {
-        variableDefinitions.add(GraphQLQueryVariableDefinition(name = name, typeName = typeName, defaultValue = defaultValue))
-    }
-
-    fun variableDefinition(variable: GraphQLQueryVariableDefinition) {
-        variableDefinitions.add(variable)
-    }
-
-    fun variableDefinitions(variables: Collection<GraphQLQueryVariableDefinition>) {
-        this.variableDefinitions.addAll(variables)
-    }
 
     fun field(field: GraphQLQueryField) {
         fields.add(field)
@@ -85,9 +78,10 @@ class GraphQLQueryRootObjectBuilder internal constructor(
         fields.add(fragmentBuilder.build())
     }
 
-    internal fun build() = GraphQLQueryRootObject(
-            operationName = operationName,
-            operationType = queryType,
-            variableDefinitions = variableDefinitions,
-            nestedFields = fields)
+    internal fun build() = GraphQLQueryField(
+            name = name,
+            alias = alias,
+            arguments = arguments,
+            nestedFields = fields,
+            directives = directives)
 }

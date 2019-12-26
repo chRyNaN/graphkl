@@ -7,5 +7,6 @@ include 'query-dsl-builder'
 include 'query-dsl-creator'
 include 'annotation'
 include 'annotation-validator'
+include 'kotlin-generator'
 
 enableFeaturePreview('GRADLE_METADATA')

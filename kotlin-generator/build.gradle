@@ -15,7 +15,6 @@ kotlin {
         commonMain {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
-                implementation project(':kotlin-generator')
             }
         }
         jvmMain {

@@ -1,4 +1,8 @@
-package com.chrynan.graphkl.query
+@file:Suppress("unused")
+
+package com.chrynan.graphkl.query.builder
+
+import com.chrynan.graphkl.query.*
 
 @GraphQLQueryMarker
 class GraphQLQueryFragmentBuilder internal constructor(

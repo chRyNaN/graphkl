@@ -1,0 +1,36 @@
+package com.chrynan.graphkl.kotlin.modifier
+
+enum class HardKeyword(override val value: String) : Keyword {
+
+    AS(value = "as"),
+    OPTIONAL_AS(value = "as?"),
+    BREAK(value = "break"),
+    CLASS(value = "class"),
+    CONTINUE(value = "continue"),
+    DO(value = "do"),
+    ELSE(value = "else"),
+    FALSE(value = "false"),
+    FOR(value = "for"),
+    FUN(value = "fun"),
+    IF(value = "if"),
+    IN(value = "in"),
+    NOT_IN(value = "!in"),
+    INTERFACE(value = "interface"),
+    IS(value = "is"),
+    NOT_IS(value = "!IS"),
+    NULL(value = "null"),
+    OBJECT(value = "object"),
+    PACKAGE(value = "package"),
+    RETURN(value = "return"),
+    SUPER(value = "super"),
+    THIS(value = "this"),
+    THROW(value = "throw"),
+    TRUE(value = "true"),
+    TRY(value = "try"),
+    TYPE_ALIAS(value = "typealias"),
+    TYPE_OF(value = "typeof"),
+    VAL(value = "val"),
+    VAR(value = "var"),
+    WHEN(value = "when"),
+    WHILE(value = "while")
+}

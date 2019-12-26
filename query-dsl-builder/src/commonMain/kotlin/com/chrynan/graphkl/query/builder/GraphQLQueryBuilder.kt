@@ -1,6 +1,8 @@
 @file:Suppress("unused")
 
-package com.chrynan.graphkl.query
+package com.chrynan.graphkl.query.builder
+
+import com.chrynan.graphkl.query.*
 
 /**
  * A Kotlin DSL builder for creating a [GraphQLQuery].

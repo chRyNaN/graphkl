@@ -1,4 +1,11 @@
-package com.chrynan.graphkl.query
+@file:Suppress("unused")
+
+package com.chrynan.graphkl.query.builder
+
+import com.chrynan.graphkl.query.GraphQLQueryArgument
+import com.chrynan.graphkl.query.GraphQLQueryDirective
+import com.chrynan.graphkl.query.GraphQLQueryField
+import com.chrynan.graphkl.query.GraphQLQueryInlineFragment
 
 class GraphQLQueryInlineFragmentBuilder internal constructor(
         private val on: String,
