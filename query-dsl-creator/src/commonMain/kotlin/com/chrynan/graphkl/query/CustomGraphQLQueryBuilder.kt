@@ -12,6 +12,18 @@ class CustomGraphQLQueryBuilder(internal val queryBuilder: GraphQLQueryBuilder) 
             builder.invoke(CustomGraphQLQueryRootObjectBuilder(this))
         }
     }
+
+    fun mutation(operationName: String? = null, builder: CustomGraphQLQueryRootObjectBuilder.() -> Unit) {
+        queryBuilder.mutation(operationName = operationName) {
+            builder.invoke(CustomGraphQLQueryRootObjectBuilder(this))
+        }
+    }
+
+    fun subscription(operationName: String? = null, builder: CustomGraphQLQueryRootObjectBuilder.() -> Unit) {
+        queryBuilder.subscription(operationName = operationName) {
+            builder.invoke(CustomGraphQLQueryRootObjectBuilder(this))
+        }
+    }
 }
 
 fun CustomGraphQLQueryBuilder.test() {

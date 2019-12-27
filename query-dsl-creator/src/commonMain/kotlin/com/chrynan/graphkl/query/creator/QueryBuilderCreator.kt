@@ -5,10 +5,15 @@ import com.chrynan.graphkl.language.type.*
 import com.chrynan.graphkl.language.type.scalar.*
 import com.chrynan.graphkl.language.type.schema.GraphQLSchema
 import com.chrynan.graphkl.query.model.QueryFieldObjectBuilderClass
+import com.chrynan.graphkl.query.template.QueryEntryFunctionTemplate
+import com.chrynan.graphkl.query.template.QueryFieldObjectBuilderClassTemplate
+import com.chrynan.graphkl.query.template.QueryRootObjectBuilderClassTemplate
 
 class QueryBuilderCreator(
         externalTypes: List<KotlinTypeDefinition> = emptyList(),
-        private val outputPackageName: String
+        private val entryFunctionTemplate: QueryEntryFunctionTemplate = QueryEntryFunctionTemplate(),
+        private val rootObjectTemplate: QueryRootObjectBuilderClassTemplate = QueryRootObjectBuilderClassTemplate(),
+        private val objectTemplate: QueryFieldObjectBuilderClassTemplate = QueryFieldObjectBuilderClassTemplate()
 ) {
 
     private val externalTypeMap = externalTypes.associateBy { it.className }
@@ -68,7 +73,7 @@ class QueryBuilderCreator(
             createdTypeMap[type.name] = defaultCustomScalarTypeDefinition
             files += KotlinFile(
                     name = type.name,
-                    packageName = outputPackageName,
+                    packageName = "",
                     typeAliases = listOf(
                             KotlinTypeAlias(name = type.name, type = defaultCustomScalarTypeDefinition)))
         }
