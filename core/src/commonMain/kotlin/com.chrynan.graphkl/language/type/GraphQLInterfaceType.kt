@@ -4,7 +4,7 @@ data class GraphQLInterfaceType(
         override val name: String,
         val description: String? = null,
         val fields: List<GraphQLField>,
-        val interfaces: List<GraphQLInterfaceType>
+        val interfaces: List<GraphQLInterfaceType> = emptyList()
 ) : GraphQLType,
         GraphQLOutputType,
         GraphQLCompositeType,

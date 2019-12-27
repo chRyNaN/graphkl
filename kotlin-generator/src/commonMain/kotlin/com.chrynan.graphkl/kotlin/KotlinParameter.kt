@@ -3,7 +3,7 @@ package com.chrynan.graphkl.kotlin
 data class KotlinParameter(
         val name: String,
         val type: KotlinTypeDefinition,
-        val defaultValue: KotlinDefaultValue
+        val defaultValue: KotlinDefaultValue = KotlinDefaultValue()
 ) {
 
     val importStatements: List<KotlinImportStatement> = type.importStatements
