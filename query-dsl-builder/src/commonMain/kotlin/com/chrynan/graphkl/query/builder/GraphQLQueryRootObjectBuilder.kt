@@ -8,7 +8,7 @@ import com.chrynan.graphkl.query.*
 class GraphQLQueryRootObjectBuilder internal constructor(
         private val operationName: String? = null,
         private val queryType: GraphQLQueryType = GraphQLQueryType.QUERY
-) {
+) : GraphQLQueryFieldBuilder {
 
     private val fields = mutableListOf<GraphQLQueryFieldNode>()
     private val variableDefinitions = mutableListOf<GraphQLQueryVariableDefinition>()
@@ -25,15 +25,15 @@ class GraphQLQueryRootObjectBuilder internal constructor(
         this.variableDefinitions.addAll(variables)
     }
 
-    fun field(field: GraphQLQueryField) {
+    override fun field(field: GraphQLQueryField) {
         fields.add(field)
     }
 
-    fun field(name: String, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList()) {
+    override fun field(name: String, alias: String?, directives: List<GraphQLQueryDirective>) {
         fields.add(GraphQLQueryField(name = name, directives = directives, alias = alias))
     }
 
-    fun field(name: String, vararg args: Pair<String, Any?>, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList()) {
+    override fun field(name: String, vararg args: Pair<String, Any?>, alias: String?, directives: List<GraphQLQueryDirective>) {
         fields.add(GraphQLQueryField(
                 name = name,
                 alias = alias,
@@ -41,7 +41,7 @@ class GraphQLQueryRootObjectBuilder internal constructor(
                 directives = directives))
     }
 
-    fun field(name: String, args: Map<String, Any?>, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList()) {
+    override fun field(name: String, args: Map<String, Any?>, alias: String?, directives: List<GraphQLQueryDirective>) {
         fields.add(GraphQLQueryField(
                 name = name,
                 alias = alias,
@@ -49,13 +49,13 @@ class GraphQLQueryRootObjectBuilder internal constructor(
                 directives = directives))
     }
 
-    fun field(name: String, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
+    override fun field(name: String, alias: String?, directives: List<GraphQLQueryDirective>, builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
         val fieldBuilder = GraphQLQueryFieldObjectBuilder(name = name, directives = directives, alias = alias)
         builder.invoke(fieldBuilder)
         fields.add(fieldBuilder.build())
     }
 
-    fun field(name: String, vararg args: Pair<String, Any?>, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
+    override fun field(name: String, vararg args: Pair<String, Any?>, alias: String?, directives: List<GraphQLQueryDirective>, builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
         val fieldBuilder = GraphQLQueryFieldObjectBuilder(
                 name = name,
                 alias = alias,
@@ -65,7 +65,7 @@ class GraphQLQueryRootObjectBuilder internal constructor(
         fields.add(fieldBuilder.build())
     }
 
-    fun field(name: String, args: Map<String, Any?>, alias: String? = null, directives: List<GraphQLQueryDirective> = emptyList(), builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
+    override fun field(name: String, args: Map<String, Any?>, alias: String?, directives: List<GraphQLQueryDirective>, builder: GraphQLQueryFieldObjectBuilder.() -> Unit) {
         val fieldBuilder = GraphQLQueryFieldObjectBuilder(
                 name = name,
                 alias = alias,

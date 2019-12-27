@@ -26,8 +26,13 @@ class CustomGraphQLQueryBuilder(internal val queryBuilder: GraphQLQueryBuilder) 
     }
 }
 
-fun CustomGraphQLQueryBuilder.test() {
-    queryBuilder.query { }
+class CustomFragmentBuilder(private val fragmentBuilder: GraphQLQueryBuilder) {
+
+    fun fragment(name: String, builder: CustomGraphQLQueryRootObjectBuilder.() -> Unit) {
+        fragmentBuilder.fragment(name = name, on = name) {
+
+        }
+    }
 }
 
 class CustomGraphQLQueryRootObjectBuilder(private val rootQueryBuilder: GraphQLQueryRootObjectBuilder) {
