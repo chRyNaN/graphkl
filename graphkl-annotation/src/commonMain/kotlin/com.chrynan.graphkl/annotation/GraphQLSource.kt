@@ -24,4 +24,4 @@ package com.chrynan.graphkl.annotation
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FILE, AnnotationTarget.CLASS)
-annotation class GraphQLSource(val location: String)
+annotation class GraphQLSource(val location: String = "")

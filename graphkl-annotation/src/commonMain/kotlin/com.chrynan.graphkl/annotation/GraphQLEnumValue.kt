@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.chrynan.graphkl.annotation
 
 /**
@@ -23,4 +25,4 @@ package com.chrynan.graphkl.annotation
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.PROPERTY)
-annotation class GraphQLValue(val name: String = "")
+annotation class GraphQLEnumValue(val name: String = "")

@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.chrynan.graphkl.annotation
 
 /**
@@ -5,7 +7,7 @@ package com.chrynan.graphkl.annotation
  * instance, this annotation can be used by code generators, such as annotation processors, for creating a GraphQL DSL
  * based off of introspection from a provided GraphQL Source Document, @see [GraphQLSource]. Note that the annotated
  * class must only contain properties that are primitives, types annotated with [GraphQLScalar], enums annotated with
- * [GraphQLEnum], or other classes annotated with [GraphQLInput].
+ * [GraphQLEnum], or other classes annotated with [GraphQLInputObject].
  *
  * @property [name] The name of the GraphQL Input Object this Kotlin Enum Class represents. If no value is provided,
  * or the value is blank, the name of the Kotlin Class will be used.
@@ -23,4 +25,4 @@ package com.chrynan.graphkl.annotation
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS, AnnotationTarget.CONSTRUCTOR)
-annotation class GraphQLInput(val name: String = "")
+annotation class GraphQLInputObject(val name: String = "")
