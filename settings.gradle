@@ -1,12 +1,5 @@
-rootProject.name = 'grahpkl'
+rootProject.name = "grahpkl"
 
-include 'core'
-include 'schema-dsl'
-include 'schema-creator'
-include 'query-dsl-builder'
-include 'query-dsl-creator'
-include 'annotation'
-include 'annotation-validator'
-include 'kotlin-generator'
+include "graphkl-annotation"
 
-enableFeaturePreview('GRADLE_METADATA')
+enableFeaturePreview("GRADLE_METADATA")

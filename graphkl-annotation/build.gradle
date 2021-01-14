@@ -1,0 +1,48 @@
+import com.chrynan.graphkl.buildSrc.LibraryConstants
+
+apply plugin: "kotlin-multiplatform"
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+kotlin {
+    targets {
+        jvm()
+        js()
+        ios()
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
+            }
+        }
+    }
+}
+
+configurations {
+    compileClasspath
+}
+
+publishing {
+    publications {
+        kotlinMultiplatform {
+            artifactId = "graphkl-annotation"
+        }
+        jvm {
+            artifactId = "graphkl-annotation-jvm"
+        }
+        js {
+            artifactId = "graphkl-annotation-js"
+        }
+        iosArm64 {
+            artifactId = "graphkl-annotation-ios-arm64"
+        }
+        iosX64 {
+            artifactId = "graphkl-annotation-ios-x64"
+        }
+        metadata {
+            artifactId = "graphkl-annotation-metadata"
+        }
+    }
+}
